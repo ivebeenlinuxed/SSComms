@@ -31,7 +31,7 @@
 <?php 
 if ($asset->isCheckedOut()) {
 ?>
-<button onclick="asset_checkin(<?php echo $asset->id ?>)" id="asset-checkin-btn">Check-In</button>
+<a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success" id="asset-checkin-btn">Check-In</button>
 <?php
 }
 ?>

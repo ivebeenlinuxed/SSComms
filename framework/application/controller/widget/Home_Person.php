@@ -16,7 +16,26 @@ class Home_Person {
 	}
 	
 	function search_list() {
-		$search = $_GET['search'];
-		echo "SEARCH FOR: ".$search;
+		$search = explode(" ", $_GET['search']);
+		
+		$db = \Model\Person::getDB();
+		$select = $db->Select("\Model\Person");
+		$select->addField("id");
+		$cols = array("first_name", "last_name");
+		$and = $select->getAndFilter();
+		foreach ($search as $term) {
+			$or = $select->getOrFilter();
+			foreach ($cols as $col) {
+				$or->like($col, "%".$term."%");
+			}
+			$and->subEq($or);
+		}
+		$select->setFilter($and);
+		
+		$results = array();
+		foreach ($select->Exec() as $r) {
+			$results[] = new \Model\Person($r['id']);
+		}
+		\Core\Router::loadView("widget/person_asset/list", array("results"=>$results));
 	}
 }

@@ -35,7 +35,7 @@ function _asset_search(id, auto) {
 				return function(data) {
 					$("#asset-description").html(data.html);
 					if (data.exists && data.checkout) {
-						add_fastkey(32, "Space for Check-in", function(id) {
+						add_fastkey(32, "Space for Check-in asset #"+id, function(id) {
 							return function() {
 								asset_checkin(id);
 							}
@@ -59,7 +59,7 @@ function _asset_search(id, auto) {
 function asset_tryCheckoutActive() {
 	if (active_asset && active_person && !active_asset_out) {
 		$("#asset-checkout-btn").attr("disabled", false);
-		add_fastkey(32, "Space for Check-out", asset_checkout_btn);
+		add_fastkey(32, "Space for Check-out asset #"+active_asset, asset_checkout_btn);
 	} else {
 		$("#asset-checkout-btn").attr("disabled", true);
 	}
@@ -77,7 +77,8 @@ function asset_checkout(asset, person) {
 		success: function(asset) {
 			return function() {
 				toastr.success("Checked out asset #"+asset, "Asset Management");
-				asset_search(asset, null);
+				$("#asset-id").val("");
+				asset_search("");
 			}
 		}(asset),
 		error: function() {
@@ -114,7 +115,8 @@ function asset_checkin(id) {
 		url: "/widget/home_asset/check_in/"+id,
 		dataType: "json",
 		success: function() {
-			asset_search(id);
+			$("#asset-id").val("");
+			asset_search("");
 		},
 		error: function() {
 			alert("A problem has occurred");

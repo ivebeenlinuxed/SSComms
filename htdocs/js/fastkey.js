@@ -22,5 +22,7 @@ $(document).keypress(function(e) {
 	if (fastkey[e.which]) {
 		fastkey[e.which][0]();
 		e.preventDefault();
+		return;
 	}
+	fastkey = new Array();
 });

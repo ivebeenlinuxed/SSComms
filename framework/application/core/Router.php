@@ -12,6 +12,31 @@ class Router extends \System\Core\Router {
 	
 	protected static $listeners;
 	
+	public static function getController($array) {
+		session_start();
+		$controller = parent::getController($array);
+		if (self::getCurrentPerson() != null) {
+			return $controller;
+		} else {
+			if ($controller[0] == "Controller\Auth") {
+				return $controller;
+			} else {
+				return array("Controller\Auth", "login", array());
+			}
+		}
+	}
+	
+	public static function getCurrentPerson() {
+		if (!isset($_SESSION['person'])) {
+			return null;
+		} else {
+			return new \Model\Person($_SESSION['person']);
+		}
+	}
+	
+	public static function setCurrentPerson(\Model\Person $p) {
+		$_SESSION['person'] = $p->id;
+	}
 	
 	public static function addEventListener($signal, $callback) {
 		if (!isset(self::$listeners[$signal])) {

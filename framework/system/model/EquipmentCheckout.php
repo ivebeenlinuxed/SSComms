@@ -100,37 +100,16 @@ class EquipmentCheckout extends \Model\DBObject {
 		$keys = array();
 
 		$std = new \stdClass();
-		$std->table = "person";
-		$std->field = "id";
-		
-		$keys[person] = $std;	
-		$std = new \stdClass();
 		$std->table = "equipment";
 		$std->field = "id";
 		
 		$keys[equipment] = $std;	
+		$std = new \stdClass();
+		$std->table = "person";
+		$std->field = "id";
+		
+		$keys[person] = $std;	
 		return $keys;
-	}
-		
-	/**
-	 * Gets all Person associated with this object
-	 * 
-	 * @return System\Model$className
-	 */
-	public function getPerson() {
-		return \Model\Person::Fetch($this->person);
-	}			
-		
-	/**
-	 * Gets all objects relating to Person
-	 * 
-	 * @param $class \Model$className Get objects relating to this class
-	 * 
-	 * @return array
-	 */		
-	public static function getByPerson(Person $class) {
-		$c = get_called_class();
-		return $c::getByAttribute("person", $class->id);
 	}
 		
 	/**
@@ -152,6 +131,27 @@ class EquipmentCheckout extends \Model\DBObject {
 	public static function getByEquipment(Equipment $class) {
 		$c = get_called_class();
 		return $c::getByAttribute("equipment", $class->id);
+	}
+		
+	/**
+	 * Gets all Person associated with this object
+	 * 
+	 * @return System\Model$className
+	 */
+	public function getPerson() {
+		return \Model\Person::Fetch($this->person);
+	}			
+		
+	/**
+	 * Gets all objects relating to Person
+	 * 
+	 * @param $class \Model$className Get objects relating to this class
+	 * 
+	 * @return array
+	 */		
+	public static function getByPerson(Person $class) {
+		$c = get_called_class();
+		return $c::getByAttribute("person", $class->id);
 	}		
 		
 	public function getBy() {
@@ -171,12 +171,12 @@ class EquipmentCheckout extends \Model\DBObject {
 		}
 		\Library\RTCQueue::Send("/model/".self::getTable()."/{$this->id}", $update_result);
 		return;
-		$obj = $this->getPerson();
+		$obj = $this->getEquipment();
 		if ($obj) {
 			$obj->bubbleUpdateResult($update_result, $loop_control);
 		}
 
-		$obj = $this->getEquipment();
+		$obj = $this->getPerson();
 		if ($obj) {
 			$obj->bubbleUpdateResult($update_result, $loop_control);
 		}

@@ -9,7 +9,7 @@
 	</thead>
 	<tbody>
 		<?php 
-		foreach ($asset->getEquipmentCheckouts() as $checkout) {
+		foreach (array_slice(array_reverse($asset->getEquipmentCheckouts()), 0, 5) as $checkout) {
 			$person = $checkout->getPerson();
 			?>
 		<tr>
@@ -28,6 +28,8 @@
 		?>
 	</tbody>
 </table>
+<a href="/api/equipment/<?php echo $asset->id ?>" class="btn btn-success pull-right" id="asset-checkin-btn">Open</button>
+
 <?php 
 if ($asset->isCheckedOut()) {
 ?>
@@ -35,3 +37,4 @@ if ($asset->isCheckedOut()) {
 <?php
 }
 ?>
+

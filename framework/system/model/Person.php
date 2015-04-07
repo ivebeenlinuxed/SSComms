@@ -36,25 +36,32 @@ class Person extends \Model\DBObject {
 	public $id;
 	
 	/**
-	* int(11)
+	* varchar(255)
 	* 
-	* @var int $first_name 
+	* @var string $first_name 
 	*/
 	public $first_name;
 	
 	/**
-	* int(11)
+	* varchar(255)
 	* 
-	* @var int $last_name 
+	* @var string $last_name 
 	*/
 	public $last_name;
 	
 	/**
-	* int(11)
+	* varchar(20)
 	* 
-	* @var int $phone_number 
+	* @var string $phone_number 
 	*/
 	public $phone_number;
+	
+	/**
+	* varchar(255)
+	* 
+	* @var string $call_sign 
+	*/
+	public $call_sign;
 	
 	/**
 	* int(11)
@@ -68,14 +75,49 @@ class Person extends \Model\DBObject {
 	* 
 	* @var int $barcode 
 	*/
-	public $barcode;	
+	public $barcode;
+	
+	/**
+	* varchar(255)
+	* 
+	* @var string $password 
+	*/
+	public $password;
+	
+	/**
+	* int(1)
+	* 
+	* @var int $active 
+	*/
+	public $active;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $verify 
+	*/
+	public $verify;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $verify_time 
+	*/
+	public $verify_time;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $role 
+	*/
+	public $role;	
 	/**
 	 * Lists all the columns in the database
 	 *
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","first_name","last_name","phone_number","team","barcode");
+		return array("id","first_name","last_name","phone_number","call_sign","team","barcode","password","active","verify","verify_time","role");
 	}
 	
 	/**
@@ -134,6 +176,16 @@ class Person extends \Model\DBObject {
 		$c = get_called_class();
 		return $c::getByAttribute("team", $class->id);
 	}
+
+	/**
+	 * Gets all DutyRolePersons relating to this model by the field person
+	 * 
+	 * @return array
+	 */	
+	public function getDutyRolePersons() {
+		return \Model\DutyRolePerson::getByPerson($this);
+	}
+	
 
 	/**
 	 * Gets all EquipmentCheckouts relating to this model by the field person

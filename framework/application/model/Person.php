@@ -27,7 +27,28 @@ namespace Model;
  *
  */
 class Person extends \System\Model\Person {
+	const ROLE_READONLY = 0;
+	const ROLE_READWRITE = 1;
+	const ROLE_ADMIN = 2;
+	const ROLE_SUPERADMIN = 3;
+	
+	public function canWrite() {
+		return $this->role > self::ROLE_READONLY;
+	}
+	
+	public function isAdmin() {
+		return $this->role > self::ROLE_READWRITE;
+	}
+	
+	public function isSuperAdmin() {
+		return $this->role > self::ROLE_ADMIN;
+	}
+	
 	public function getName() {
 		return $this->first_name." ".$this->last_name;
+	}
+	
+	public static function getActivationRequests() {
+		array();
 	}
 }

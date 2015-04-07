@@ -37,7 +37,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="http://www.github.com/ivebeenlinuxed/boiler">Fork Me</a></li>
+				<li><a href="/auth/logout">Logout</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

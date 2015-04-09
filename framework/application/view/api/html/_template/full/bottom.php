@@ -38,5 +38,8 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 
 <link rel="import" href="/widget/text/loader" />
 
+
+<link rel="import" href="/js/widget/home_activations.html" />
+
 </body>
 </html>

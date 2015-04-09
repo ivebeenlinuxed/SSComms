@@ -12,7 +12,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <link rel="stylesheet" type="text/css" href="/plugins/boiler/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/font-awesome-4.0.3/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/toastr/toastr.css" />
-
+<meta name="viewport" content="width=device-width">
 
 <script type="text/javascript" src="/plugins/jquery/jquery-1.9.1.min.js"></script>
 

@@ -51,4 +51,12 @@ class Person extends \System\Model\Person {
 	public static function getActivationRequests() {
 		array();
 	}
+	
+	public function Verify($code) {
+		if ($this->verify_time > time()-60 && $this->verify == $code) {
+			$this->setAttribute("active", 1);
+			return true;
+		}
+		return false;
+	}
 }

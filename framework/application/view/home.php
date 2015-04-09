@@ -14,7 +14,7 @@
 		<li role="presentation"><a href="#tab-incidents" aria-controls="messages"
 			role="tab" data-toggle="tab">Incident Reports <span class="badge">0</span></a></li>
 		<li role="presentation"><a href="#tab-activations" aria-controls="settings"
-			role="tab" data-toggle="tab">Activations <span class="badge">0</span></a></li>
+			role="tab" data-toggle="tab">Activations <span id="home-activations-count" class="label label-default">0</span></a></li>
 	</ul>
 	<br />
 	<!-- Tab panes -->
@@ -150,7 +150,19 @@
 			NOT YET IMPLEMENTED
 		</div>
 		<div role="tabpanel" class="tab-pane" id="tab-activations">
-			NOT YET IMPLEMENTED
+			<table class="table table-striped table-bordered" id="home-activations-table">
+				<thead>
+					<tr>
+						<th>Phone Number</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
 		</div>
 	</div>
 

@@ -48,6 +48,7 @@ HomeActivations.CheckForUpdates = function() {
 	$.ajax({
 		url : "/home/get_activations",
 		dataType : "json",
+		type: "post",
 		success : function(data) {
 			$("#home-activations-count").html(data.length);
 			if (data.length > 0) {

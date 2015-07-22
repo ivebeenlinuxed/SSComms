@@ -32,6 +32,16 @@ class Person extends \System\Model\Person {
 	const ROLE_ADMIN = 2;
 	const ROLE_SUPERADMIN = 3;
 	
+	public static function Init() {
+		$fp = new \Library\FieldProperties();
+		$fp->visibility = \Library\FieldProperties::VISIBILITY_PRIVATE;
+		self::$data_map['password'] = $fp;
+		self::$data_map['barcode'] = $fp;
+		self::$data_map['verify'] = $fp;
+		self::$data_map['verify_time'] = $fp;
+		
+	}
+	
 	public function canWrite() {
 		return $this->role > self::ROLE_READONLY;
 	}
@@ -60,3 +70,4 @@ class Person extends \System\Model\Person {
 		return false;
 	}
 }
+Person::Init();

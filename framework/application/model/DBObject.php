@@ -29,7 +29,7 @@ namespace Model;
  *
  */
 abstract class DBObject extends \System\Model\DBObject {
-
+	/*
 	public static $data_map;
 	
 	public static function getWidgetTypeByColumn($col) {
@@ -52,6 +52,7 @@ abstract class DBObject extends \System\Model\DBObject {
 		$w->setResult($this->$field);
 		return $w;
 	}
+	*/
 	
 	/**
 	 * Override to allow Router settings to take effect

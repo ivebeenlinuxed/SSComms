@@ -7,7 +7,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Boiler Data</title>
+<title>SS Comms</title>
 <link rel="stylesheet" type="text/css" href="/plugins/bootstrap/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/boiler/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/font-awesome-4.0.3/css/font-awesome.min.css" />
@@ -30,7 +30,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="/">Boiler Data</a>
+			<a class="navbar-brand" href="/">SS Comms</a>
 			
 		</div>
 

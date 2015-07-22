@@ -57,9 +57,9 @@ HomeActivations.CheckForUpdates = function() {
 				row = data[i];
 				clone = document.importNode($("#home-activations-template").get(0).content, true);
 				
-				clone.querySelectorAll("td")[0].innerText = row.phone_number;
-				clone.querySelectorAll("td")[1].innerText = row.first_name;
-				clone.querySelectorAll("td")[2].innerText = row.last_name;
+				clone.querySelectorAll("td")[0].innerHTML = row.phone_number;
+				clone.querySelectorAll("td")[1].innerHTML = row.first_name;
+				clone.querySelectorAll("td")[2].innerHTML = row.last_name;
 				clone.querySelectorAll("input")[0].id = "home-activation-input-"+row.id;
 				clone.querySelectorAll("button")[0].id = "home-activation-btn-"+row.id;
 				$("#home-activations-table tbody").append(clone);

@@ -36,7 +36,6 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <script type="text/javascript" src="/plugins/boiler/widget/tooltip-loader.js"></script>
 <script type="text/javascript" src="/plugins/bootstrap/js/bootstrap.min.js"></script>
 
-<link rel="import" href="/widget/text/loader" />
 
 
 <script type="text/javascript" src="/js/widget/home_activations.js"></script>

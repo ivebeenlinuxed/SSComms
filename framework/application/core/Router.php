@@ -30,7 +30,12 @@ class Router extends \System\Core\Router {
 		if (!isset($_SESSION['person'])) {
 			return null;
 		} else {
-			return new \Model\Person($_SESSION['person']);
+			$p = new \Model\Person($_SESSION['person']);
+			if ($p->isActive()) {
+				return $p;
+			} else {
+				null;
+			}
 		}
 	}
 	

@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS `duty_role`;
 CREATE TABLE IF NOT EXISTS `duty_role` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `equipment` (
   `name` varchar(255) NOT NULL,
   `category` int(11) NOT NULL DEFAULT '0',
   `in_service` int(11) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=800 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,7 @@ DROP TABLE IF EXISTS `equipment_category`;
 CREATE TABLE IF NOT EXISTS `equipment_category` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `equipment_checkout` (
   `person` int(11) NOT NULL,
   `checkout` int(11) NOT NULL,
   `checkin` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=32 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -117,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `verify` int(11) NOT NULL,
   `verify_time` int(11) NOT NULL,
   `role` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=810 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -129,7 +129,7 @@ DROP TABLE IF EXISTS `team`;
 CREATE TABLE IF NOT EXISTS `team` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL DEFAULT 'Unnamed'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Indexes for dumped tables
@@ -247,5 +247,7 @@ ALTER TABLE `person`
 ADD CONSTRAINT `person_ibfk_1` FOREIGN KEY (`team`) REFERENCES `team` (`id`);
 
 
+INSERT INTO `equipment_category` (id, name) VALUES (0, 'Uncategorised');
+INSERT INTO `team` (id, name) VALUES (0, 'Unknown');
 INSERT INTO `person` (`id`, `wristband_id`, `first_name`, `last_name`, `phone_number`, `call_sign`, `team`, `barcode`, `password`, `active`, `verify`, `verify_time`, `role`) VALUES
-(123, 0, 'Will', 'Tinsdeall', '07906833424', 'Golf 1', 1, 0, '$1$hS.uy0Ly$v1qVfyYA1ZMg2fR4ZDIWy.', 1, 8225, 1428444499, 0);
+(123, 0, 'Will', 'Tinsdeall', '07906833424', 'Golf 1', 0, 0, '$1$hS.uy0Ly$v1qVfyYA1ZMg2fR4ZDIWy.', 1, 8225, 1428444499, 0);

@@ -52,6 +52,17 @@
 		?>
 	</select>
 				</div>
+				<?php 
+				if ($person->isActive()) {
+				?>
+				<a data-ajaxless class="btn btn-danger" href="javascript:deactivate_user(<?php echo $person->id ?>)">Deactivate Login</a>
+				<?php
+				} else {
+				?>
+				User cannot login
+				<?php
+				}
+				?>
 			</div>
 		</div>
 		<div class="panel panel-default">

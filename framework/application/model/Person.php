@@ -62,6 +62,10 @@ class Person extends \System\Model\Person {
 		array();
 	}
 	
+	public function isActive() {
+		return $this->active==1;
+	}
+	
 	public function Verify($code) {
 		if ($this->verify_time > time()-60 && $this->verify == $code) {
 			$this->setAttribute("active", 1);

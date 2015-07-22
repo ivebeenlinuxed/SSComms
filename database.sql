@@ -185,7 +185,7 @@ ALTER TABLE `team`
 -- AUTO_INCREMENT for table `duty_role`
 --
 ALTER TABLE `duty_role`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `duty_role_person`
 --
@@ -195,27 +195,27 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `equipment`
 --
 ALTER TABLE `equipment`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=800;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `equipment_category`
 --
 ALTER TABLE `equipment_category`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `equipment_checkout`
 --
 ALTER TABLE `equipment_checkout`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=32;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=810;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
 --
 -- Constraints for dumped tables
 --
@@ -245,3 +245,7 @@ ADD CONSTRAINT `equipment_checkout_ibfk_2` FOREIGN KEY (`person`) REFERENCES `pe
 --
 ALTER TABLE `person`
 ADD CONSTRAINT `person_ibfk_1` FOREIGN KEY (`team`) REFERENCES `team` (`id`);
+
+
+INSERT INTO `person` (`id`, `wristband_id`, `first_name`, `last_name`, `phone_number`, `call_sign`, `team`, `barcode`, `password`, `active`, `verify`, `verify_time`, `role`) VALUES
+(123, 0, 'Will', 'Tinsdeall', '07906833424', 'Golf 1', 1, 0, '$1$hS.uy0Ly$v1qVfyYA1ZMg2fR4ZDIWy.', 1, 8225, 1428444499, 0);

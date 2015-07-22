@@ -16,6 +16,20 @@
 					<label class="control-label">In Service</label>
 					NYI
 				</div>
+				<div class="form-group">
+					<label class="control-label">Category</label> <select
+						class="form-control" data-table="equipment" data-field="category"
+						data-id="<?php echo $equipment->id ?>">
+		<?php
+		foreach ( \Model\EquipmentCategory::getAll() as $equipment_category ) {
+			?>
+		<option value="<?php echo $equipment_category->id ?>"
+							<?php echo $equipment_category->id==$equipment->category? "selected" : "" ?>><?php echo $equipment_category->name ?></option>
+		<?php
+		}
+		?>
+	</select>
+				</div>
 			</div>
 		</div>
 	</div>

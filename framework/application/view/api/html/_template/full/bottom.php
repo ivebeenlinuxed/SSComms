@@ -39,7 +39,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <link rel="import" href="/widget/text/loader" />
 
 
-<link rel="import" href="/js/widget/home_activations.js" />
+<script type="text/javascript" src="/js/widget/home_activations.js"></script>
 <template id="home-activations-template">
 <tr>
 	<td></td>

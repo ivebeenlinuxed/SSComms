@@ -31,11 +31,19 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 					class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="/">Boiler Data</a>
+			
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li><a href="/home/activation">Activations</a></li>
+				<li><a href="/api/person">People</a></li>
+				<li><a href="/api/equipment">Equipment</a></li>
+				<li><a href="/api/team">Teams</a></li>
+				<li><a href="/api/equipment_category">Equipment Category</a></li>
+			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="/auth/logout">Logout</a></li>
 			</ul>

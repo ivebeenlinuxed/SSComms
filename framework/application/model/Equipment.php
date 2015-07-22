@@ -32,6 +32,10 @@ class Equipment extends \System\Model\Equipment {
 		return count($checkouts) > 0 && $checkouts[count($checkouts)-1]->checkin == 0;
 	}
 	
+	function isInService() {
+		return $this->in_service==1;
+	}
+	
 	function getEquipmentCheckouts() {
 		return array_reverse(\System\Library\StdLib::object_order(parent::getEquipmentCheckouts(), "checkout"));
 	}

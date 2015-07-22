@@ -32,11 +32,98 @@ TextWidget = function(el) {
 	}
 	
 	this.keyup = function() {
+		p = $(this.element).parent();
+		if (p.is(".form-group")) {
+			p.removeClass("has-success").removeClass("has-error").addClass("has-warning");
+		}
 		$.ajax({
 			url: "/api/"+this.table+"/"+this.id+".json",
 			type: "put",
-			data: encodeURIComponent(this.field)+"="+encodeURIComponent(this.getResult())
+			data: encodeURIComponent(this.field)+"="+encodeURIComponent(this.getResult()),
+			dataType: "json",
+			success: function(data) {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					if (data == null) {
+						p.removeClass("has-warning").addClass("has-error");
+					} else {
+						p.removeClass("has-warning").addClass("has-success");
+					}
+				}
+			},
+			error: function() {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					p.removeClass("has-warning").addClass("has-error");
+				}
+			},
+			context: this
 		});
 	};
 	$(this.element).on("keyup", this.keyup.bind(this));
+}
+
+$(document).ready(function() {
+	SelectWidgetFactory.Render($("body"));
+	$("body").on("DOMSubtreeModified", function() {
+		SelectWidgetFactory.Render($("body"));
+	});
+});
+
+SelectWidgetFactory = new Object();
+SelectWidgetFactory.rendering = false;
+SelectWidgetFactory.Render = function(el) {
+	if (SelectWidgetFactory.rendering) {
+		return;
+	}
+	SelectWidgetFactory.rendering = true;
+	$("select[data-table][data-id][data-field]", el).each(function() {
+		if (!this.widget) {
+			new SelectWidget(this);
+		}
+	});	
+	SelectWidgetFactory.rendering = false;
+}
+
+SelectWidget = function(el) {
+	this.element = $(el);
+	this.element.get(0).widget = this;
+	this.table = this.element.attr("data-table");
+	this.id = this.element.attr("data-id");
+	this.field = this.element.attr("data-field");
+	
+	this.getResult = function() {
+		return $(this.element).attr("data-result")? $(this.element).attr("data-result") : $(this.element).val();
+	}
+	
+	this.change = function() {
+		p = $(this.element).parent();
+		if (p.is(".form-group")) {
+			p.removeClass("has-success").removeClass("has-error").addClass("has-warning");
+		}
+		$.ajax({
+			url: "/api/"+this.table+"/"+this.id+".json",
+			type: "put",
+			data: encodeURIComponent(this.field)+"="+encodeURIComponent(this.getResult()),
+			dataType: "json",
+			success: function(data) {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					if (data == null) {
+						p.removeClass("has-warning").addClass("has-error");
+					} else {
+						p.removeClass("has-warning").addClass("has-success");
+					}
+				}
+			},
+			error: function() {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					p.removeClass("has-warning").addClass("has-error");
+				}
+			},
+			context: this
+		});
+	};
+	$(this.element).on("change", this.change.bind(this));
 }

@@ -39,7 +39,20 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <link rel="import" href="/widget/text/loader" />
 
 
-<link rel="import" href="/js/widget/home_activations.html" />
+<link rel="import" href="/js/widget/home_activations.js" />
+<template id="home-activations-template">
+<tr>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td><div class="input-group">
+			<input type="text" class="form-control home-activations-active" placeholder="Activation Code">
+			<span class="input-group-btn">
+				<button class="btn btn-default home-activations-active" type="button">Activate!</button>
+			</span>
+		</div> <!-- /input-group --></td>
+</tr>
+</template>
 
 </body>
 </html>

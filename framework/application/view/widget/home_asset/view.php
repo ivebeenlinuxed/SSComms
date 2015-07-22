@@ -1,4 +1,21 @@
 <h3><?php echo $asset->name ?> (<?php echo $asset->getCategory()->name ?>)</h3>
+
+<div class="form-group">
+	<label class="control-label">Name</label>
+	<input class="form-control" type="text" data-table="equipment" data-field="name" data-id="<?php echo $asset->id ?>" value="<?php echo $asset->name ?>" />
+</div>
+<div class="form-group">
+	<label class="control-label">Category</label>
+	<select class="form-control" data-table="equipment" data-field="category" data-id="<?php echo $asset->id ?>">
+		<?php 
+		foreach (\Model\EquipmentCategory::getAll() as $category) {
+		?>
+		<option value="<?php echo $category->id ?>" <?php echo $category->id==$asset->category? "selected" : "" ?>><?php echo $category->name ?></option>
+		<?php 
+		}
+		?>
+	</select>
+</div>	
 <table class="table table-striped">
 	<thead>
 		<tr>

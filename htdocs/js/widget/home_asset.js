@@ -23,7 +23,7 @@ _asset_search_timeout = null;
 function _asset_search(id, auto) {
 	_asset_search_timeout = null;
 	active_asset = null;
-	if (id > 1) {
+	if (!isNaN(parseInt(id))) {
 		$("#asset-description").html("Searching...");
 		$.ajax({
 			url: "/widget/home_asset/search/"+id,
@@ -51,6 +51,17 @@ function _asset_search(id, auto) {
 				}
 			}(id, auto)
 		});
+	} else if (id.length > 1) {
+		$.ajax({
+			url: "/widget/home_asset/search_list?search="+id,
+			success: function(data) {
+				$("#asset-description").html(data);
+			},
+			error: function() {
+				$("#asset-description").html("Oops, couldn't search for assets...");
+			}
+		});
+		return;
 	} else {
 		$("#asset-description").html("Waiting to search...");
 	}
@@ -90,19 +101,18 @@ function asset_checkout(asset, person) {
 
 function asset_add() {
 	$("#asset-add-btn").html("Working the magic...");
+	
+	val = $("#asset-id").val();
+	
+	
 	$.ajax({
-		url: "/api/equipment",
+		url: "/api/equipment.json",
 		type: "POST",
-		data: {
-			id: $("#asset-id").val(),
-			name: $("#asset-add-name").val(),
-			category: $("#asset-add-category").val()
+		data: {name: val},
+		dataType: "json",
+		success: function(response) {
+			asset_search(response.data.id);
 		},
-		success: function(id) {
-			return function() {
-				asset_search(id);
-			}
-		}($("#asset-id").val()),
 		error: function() {
 			$("#asset-add-btn").html("Dude - problem. Press me again...");
 		}

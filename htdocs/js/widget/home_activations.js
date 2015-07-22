@@ -1,11 +1,4 @@
-<script type="text/javascript">
-/**
- * 
- */
-
-
 HomeActivations = new Object();
-HomeActivations.doc = this.document.currentScript.ownerDocument;
 
 HomeActivations.StartLoop = function() {
 	HomeActivations._doLoop();
@@ -62,7 +55,7 @@ HomeActivations.CheckForUpdates = function() {
 			$("#home-activations-table tbody").empty();
 			for (i in data) {
 				row = data[i];
-				clone = document.importNode($("#home-activations-template", HomeActivations.doc).get(0).content, true);
+				clone = document.importNode($("#home-activations-template").get(0).content, true);
 				
 				clone.querySelectorAll("td")[0].innerText = row.phone_number;
 				clone.querySelectorAll("td")[1].innerText = row.first_name;
@@ -84,19 +77,8 @@ HomeActivations.CheckForUpdates = function() {
 }
 
 $(document).ready(function() {
+	if ($("#home-activations-table").length == 0) {
+		return;
+	}
 	HomeActivations.StartLoop();
 });
-</script>
-<template id="home-activations-template">
-<tr>
-	<td></td>
-	<td></td>
-	<td></td>
-	<td><div class="input-group">
-			<input type="text" class="form-control home-activations-active" placeholder="Activation Code">
-			<span class="input-group-btn">
-				<button class="btn btn-default home-activations-active" type="button">Activate!</button>
-			</span>
-		</div> <!-- /input-group --></td>
-</tr>
-</template>

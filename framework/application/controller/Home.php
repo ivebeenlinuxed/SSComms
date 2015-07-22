@@ -31,4 +31,9 @@ class Home {
 		$p = new \Model\Person($_POST['id']);
 		echo json_encode(array("success"=>$p->Verify($_POST['verify'])));
 	}
+	
+	public function activation() {
+		\Core\Router::loadView("activation");
+		
+	}
 }

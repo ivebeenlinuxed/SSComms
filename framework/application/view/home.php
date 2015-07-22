@@ -3,169 +3,36 @@
 ?>
 <h1 class="text-center">Soul Survivor Comms</h1>
 
-<div role="tabpanel">
-
-	<!-- Nav tabs -->
-	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active"><a href="#asset-manager"
-			aria-controls="home" role="tab" data-toggle="tab">Asset Manager</a></li>
-		<li role="presentation"><a href="#site-overview"
-			aria-controls="profile" role="tab" data-toggle="tab">Site Overview</a></li>
-		<li role="presentation"><a href="#tab-incidents" aria-controls="messages"
-			role="tab" data-toggle="tab">Incident Reports <span class="badge">0</span></a></li>
-		<li role="presentation"><a href="#tab-activations" aria-controls="settings"
-			role="tab" data-toggle="tab">Activations <span id="home-activations-count" class="label label-default">0</span></a></li>
-	</ul>
-	<br />
-	<!-- Tab panes -->
-	<div class="tab-content">
-		<div role="tabpanel" class="tab-pane active" id="asset-manager">
-			<div class="row-fluid">
-				<div class="col-md-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">People</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label>Search for Person / iMIS number</label> <input
-									type="text" class="form-control" id="person-id" />
-							</div>
-							<div id="person-description">Waiting to search...</div>
-						</div>
+	<div class="row-fluid">
+		<div class="col-md-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">People</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label>Search for Person / iMIS number</label> <input type="text"
+							class="form-control" id="person-id" />
 					</div>
-				</div>
-				<div class="col-md-2">
-					<button class="btn btn-success btn-block" disabled
-						id="asset-checkout-btn">Check Out &gt;&gt;</button>
-				</div>
-				<div class="col-md-5">
-					<div class="panel panel-default">
-						<div class="panel-heading">Assets</div>
-						<div class="panel-body">
-							<div class="form-group">
-								<label>Asset ID</label> <input id="asset-id" type="text"
-									class="form-control" />
-							</div>
-							<div id="asset-description">Waiting to search...</div>
-						</div>
-					</div>
+					<div id="person-description">Waiting to search...</div>
 				</div>
 			</div>
 		</div>
-		<div role="tabpanel" class="tab-pane" id="site-overview">
-			<div class="row-fluid">
-				<div class="col-md-4">
-					<div class="well media">
-						<div class="media-left media-top">
-							<a href="#"> <img class="media-object"
-								src="http://placehold.it/50x50" alt="pic">
-							</a>
-						</div>
-						<div class="media-body">
-							<h4 class="media-heading">Duty Site Manager</h4>
-							<strong>Name: </strong>Will Tinsdeall<br /> <strong>Call Sign: </strong>Alpha
-							1.5<br /> <strong>Phone: </strong>01234 567890<br />
-							</dl>
-						</div>
+		<div class="col-md-2">
+			<button class="btn btn-success btn-block" disabled
+				id="asset-checkout-btn">Check Out &gt;&gt;</button>
+		</div>
+		<div class="col-md-5">
+			<div class="panel panel-default">
+				<div class="panel-heading">Assets</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label>Asset ID</label> <input id="asset-id" type="text"
+							class="form-control" />
 					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="well media">
-						<div class="media-left media-top">
-							<a href="#"> <img class="media-object"
-								src="http://placehold.it/50x50" alt="pic">
-							</a>
-						</div>
-						<div class="media-body">
-							<h4 class="media-heading">Duty Charlie Lima</h4>
-							<strong>Name: </strong>Will Tinsdeall<br /> <strong>Call Sign: </strong>Alpha
-							1.5<br /> <strong>Phone: </strong>01234 567890<br />
-							</dl>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="well media">
-						<div class="media-left media-top">
-							<a href="#"> <img class="media-object"
-								src="http://placehold.it/50x50" alt="pic">
-							</a>
-						</div>
-						<div class="media-body">
-							<h4 class="media-heading">Duty Welfare</h4>
-							<strong>Name: </strong>Will Tinsdeall<br /> <strong>Call Sign: </strong>Alpha
-							1.5<br /> <strong>Phone: </strong>01234 567890<br />
-							</dl>
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
-				<div class="row-fluid">
-					<div class="col-md-4">
-						<div class="well media">
-							<div class="media-left media-top">
-								<a href="#"> <img class="media-object"
-									src="http://placehold.it/50x50" alt="pic">
-								</a>
-							</div>
-							<div class="media-body">
-								<h4 class="media-heading">Duty Village Host</h4>
-								<strong>Name: </strong>Will Tinsdeall<br /> <strong>Call Sign: </strong>Alpha
-								1.5<br /> <strong>Phone: </strong>01234 567890<br />
-								</dl>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4">
-						<div class="well media">
-							<div class="media-left media-top">
-								<a href="#"> <img class="media-object"
-									src="http://placehold.it/50x50" alt="pic">
-								</a>
-							</div>
-							<div class="media-body">
-								<a href="#">View others...</a>
-							</div>
-						</div>
-					</div>
-					<!-- 
-				<div class="col-md-4">
-					<div class="well media">
-						<div class="media-left media-top">
-							<a href="#"> <img class="media-object"
-								src="http://placehold.it/50x50" alt="pic">
-							</a>
-						</div>
-						<div class="media-body">
-							<h4 class="media-heading" data-toggle="tooltip"
-								data-placement="bottom" title="Most check-outs in the day">Sonic
-								Award</h4>
-						</div>
-					</div>
-				</div>
-				 -->
+					<div id="asset-description">Waiting to search...</div>
 				</div>
 			</div>
-		</div>
-		<div role="tabpanel" class="tab-pane" id="tab-incidents">
-			NOT YET IMPLEMENTED
-		</div>
-		<div role="tabpanel" class="tab-pane" id="tab-activations">
-			<table class="table table-striped table-bordered" id="home-activations-table">
-				<thead>
-					<tr>
-						<th>Phone Number</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th></th>
-					</tr>
-				</thead>
-				<tbody>
-					
-				</tbody>
-			</table>
 		</div>
 	</div>
-
 </div>
 <div class="modal fade" id="javascript-modal">
 	<div class="modal-dialog">

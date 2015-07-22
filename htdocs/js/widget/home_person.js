@@ -73,21 +73,33 @@ function addset_tryCheckoutActive() {
 
 function person_add() {
 	$("#person-add-btn").html("Working the magic...");
+	
+	
+	name = $("#person-id").val();
+	if (name.length > 1) {
+		aName = name.split(" ");
+		first_name = aName[0];
+		if (aName[1] && aName[1].length > 1) {
+			last_name = aName[1];
+		} else {
+			last_name="Unnamed";
+		}
+	} else {
+		first_name = "Unknown";
+		last_name = "Unknown";
+	}
+	
 	$.ajax({
-		url: "/api/person",
+		url: "/api/person.json",
 		type: "POST",
+		dataType: "json",
 		data: {
-			id: $("#person-id").val(),
-			first_name: $("#person-add-fname").val(),
-			last_name: $("#person-add-lname").val(),
-			phone_number: $("#person-add-phone").val(),
-			team: $("#person-add-team").val()
+			"first_name": first_name,
+			"last_name": last_name
 		},
-		success: function(id) {
-			return function() {
-				person_search(id);
-			}
-		}($("#person-id").val()),
+		success: function(response) {
+			person_search(response.data.id);
+		},
 		error: function() {
 			$("#person-add-btn").html("Dude - problem. Press me again...");
 		}

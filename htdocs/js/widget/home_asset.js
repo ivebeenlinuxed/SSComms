@@ -42,7 +42,7 @@ function _asset_search(id, auto) {
 						}(id));
 					}
 					
-					if (data.exists) {
+					if (data.exists && data.in_service) {
 						active_asset = id;
 						active_asset_out = data.checkout;
 						asset_tryCheckoutActive();

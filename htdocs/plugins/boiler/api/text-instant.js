@@ -127,3 +127,74 @@ SelectWidget = function(el) {
 	};
 	$(this.element).on("change", this.change.bind(this));
 }
+
+
+
+$(document).ready(function() {
+	CheckboxWidgetFactory.Render($("body"));
+	$("body").on("DOMSubtreeModified", function() {
+		CheckboxWidgetFactory.Render($("body"));
+	});
+});
+
+CheckboxWidgetFactory = new Object();
+CheckboxWidgetFactory.rendering = false;
+CheckboxWidgetFactory.Render = function(el) {
+	if (CheckboxWidgetFactory.rendering) {
+		return;
+	}
+	CheckboxWidgetFactory.rendering = true;
+	$("input[type='checkbox'][data-table][data-id][data-field]", el).each(function() {
+		if (!this.widget) {
+			new CheckboxWidget(this);
+		}
+	});	
+	CheckboxWidgetFactory.rendering = false;
+}
+
+CheckboxWidget = function(el) {
+	this.element = $(el);
+	this.element.get(0).widget = this;
+	this.table = this.element.attr("data-table");
+	this.id = this.element.attr("data-id");
+	this.field = this.element.attr("data-field");
+	
+	this.getResult = function() {
+		if (this.element[0].checked) {
+			return this.element.attr("data-activated");
+		} else {
+			return this.element.attr("data-deactivated");
+		}
+	}
+	
+	this.change = function() {
+		p = $(this.element).parent();
+		if (p.is(".form-group")) {
+			p.removeClass("has-success").removeClass("has-error").addClass("has-warning");
+		}
+		$.ajax({
+			url: "/api/"+this.table+"/"+this.id+".json",
+			type: "put",
+			data: encodeURIComponent(this.field)+"="+encodeURIComponent(this.getResult()),
+			dataType: "json",
+			success: function(data) {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					if (data == null) {
+						p.removeClass("has-warning").addClass("has-error");
+					} else {
+						p.removeClass("has-warning").addClass("has-success");
+					}
+				}
+			},
+			error: function() {
+				p = $(this.element).parent();
+				if (p.is(".form-group")) {
+					p.removeClass("has-warning").addClass("has-error");
+				}
+			},
+			context: this
+		});
+	};
+	$(this.element).on("change", this.change.bind(this));
+}

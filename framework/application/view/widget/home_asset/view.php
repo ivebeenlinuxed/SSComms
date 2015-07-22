@@ -1,5 +1,11 @@
 <h3><?php echo $asset->name ?> (<?php echo $asset->getCategory()->name ?>)</h3>
-
+<?php 
+if (!$asset->isInService()) {
+?>
+<span class="label label-warning">Not in service</span>
+<?php
+}
+?>
 <div class="form-group">
 	<label class="control-label">Name</label>
 	<input class="form-control" type="text" data-table="equipment" data-field="name" data-id="<?php echo $asset->id ?>" value="<?php echo $asset->name ?>" />

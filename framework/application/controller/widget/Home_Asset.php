@@ -8,6 +8,7 @@ class Home_Asset {
 			$output['html'] = \Core\Router::getView("widget/home_asset/view", array("asset"=>$equipment));
 			$output['id'] = $equipment->id;
 			$output['checkout'] = $equipment->isCheckedOut();
+			$output['in_service'] = $equipment->isInService();
 			$output['exists'] = true;
 		} else {
 			$output['html'] = \Core\Router::getView("widget/home_asset/add", array("id"=>$id));

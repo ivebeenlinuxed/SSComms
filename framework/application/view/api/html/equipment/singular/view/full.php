@@ -14,7 +14,9 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label">In Service</label>
-					NYI
+					<input type="checkbox" data-table="equipment" data-field="in_service"
+					data-activated="1" data-deactivated="0"
+					data-id="<?php echo $equipment->id ?>" <?php echo $equipment->isInService()? "checked" : "" ?> />
 				</div>
 				<div class="form-group">
 					<label class="control-label">Category</label> <select

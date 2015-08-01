@@ -22,6 +22,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <script src="/js/fastkey.js"></script>
 <script src="/js/widget/home_asset.js"></script>
 <script src="/js/widget/home_person.js"></script>
+<script src="/js/offline/venue_check_online.js"></script>
 
 
 
@@ -53,6 +54,9 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 		</div> <!-- /input-group --></td>
 </tr>
 </template>
-
+<iframe id='manifest_iframe_hack' 
+  style='display: none;' 
+  src='/offline/manifest_iframe.html'>
+</iframe>
 </body>
 </html>

@@ -45,7 +45,10 @@
 							<th>ID</th>
 							<th>Name</th>
 							<th>Check-Out</th>
+							<th>Check-Out Actor</th>
 							<th>Check-In</th>
+							<th>Check-In Actor</th>
+							
 						</tr>
 					</thead>
 					<tbody>
@@ -59,7 +62,16 @@
 						$d = new DateTime();
 						$d->setTimestamp($checkout->checkout);
 						echo $d->format("H:i:s d/m/Y");
-						?></td><td><?php
+						?></td>
+						<td><?php
+						$a = $checkout->getOutActor();
+						if ($a == null) {
+							echo "Unknown";
+						} else {
+							echo $a->getName();
+						}
+						 ?></td>
+						<td><?php
 						if ($checkout->checkin > 0) {
 							$d = new DateTime();
 							$d->setTimestamp($checkout->checkin);
@@ -68,6 +80,14 @@
 							echo "Not returned";
 						}
 						?></td>
+						<td><?php
+						$a = $checkout->getInActor();
+						if ($a == null) {
+							echo "Unknown";
+						} else {
+							echo $a->getName();
+						}
+						 ?></td>
 					</tr>
 					<?php
 					}

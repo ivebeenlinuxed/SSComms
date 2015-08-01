@@ -110,6 +110,14 @@ $(document).ready(function() {
 				return;
 			}
 			
+			if ($(this).is("input[type='checkbox'][name]")) {
+				if ($(this).is(":checked")) {
+					fields[$(this).attr("name")] = "on";
+				} else {
+					fields[$(this).attr("name")] = "";
+				}
+			}
+			
 			
 			if ($(this).attr("name")) {
 				fields[$(this).attr("name")] = $(this).val();

@@ -36,6 +36,13 @@ class Person extends \Model\DBObject {
 	public $id;
 	
 	/**
+	* int(11)
+	* 
+	* @var int $wristband_id 
+	*/
+	public $wristband_id;
+	
+	/**
 	* varchar(255)
 	* 
 	* @var string $first_name 
@@ -117,7 +124,7 @@ class Person extends \Model\DBObject {
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","first_name","last_name","phone_number","call_sign","team","barcode","password","active","verify","verify_time","role");
+		return array("id","wristband_id","first_name","last_name","phone_number","call_sign","team","barcode","password","active","verify","verify_time","role");
 	}
 	
 	/**
@@ -192,8 +199,38 @@ class Person extends \Model\DBObject {
 	 * 
 	 * @return array
 	 */	
-	public function getEquipmentCheckouts() {
+	public function getEquipmentCheckoutsFromPerson() {
 		return \Model\EquipmentCheckout::getByPerson($this);
+	}
+	
+
+	/**
+	 * Gets all EquipmentCheckouts relating to this model by the field in_actor
+	 * 
+	 * @return array
+	 */	
+	public function getEquipmentCheckoutsFromInActor() {
+		return \Model\EquipmentCheckout::getByInActor($this);
+	}
+	
+
+	/**
+	 * Gets all EquipmentCheckouts relating to this model by the field out_actor
+	 * 
+	 * @return array
+	 */	
+	public function getEquipmentCheckoutsFromOutActor() {
+		return \Model\EquipmentCheckout::getByOutActor($this);
+	}
+	
+
+	/**
+	 * Gets all VenueChecks relating to this model by the field actor
+	 * 
+	 * @return array
+	 */	
+	public function getVenueChecks() {
+		return \Model\VenueCheck::getByActor($this);
 	}
 	
 	public function bubbleUpdateResult($update_result, $loop_control=array()) {

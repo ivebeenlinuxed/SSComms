@@ -6,6 +6,10 @@ class Home {
 		\Core\Router::loadView("home");
 	}
 	
+	function offline() {
+		\Core\Router::loadView("offline");
+	}
+	
 	public function get_activations() {
 		$db = \Model\Person::getDB();
 		$select = $db->Select("\Model\Person");

@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# 2015-07-01:v4
+
+# Explicitly cached 'master entries'.
+CACHE:
+/plugins/bootstrap/css/bootstrap.min.css
+/plugins/font-awesome-4.0.3/css/font-awesome.min.css
+/plugins/jquery/jquery-1.9.1.min.js
+/plugins/boiler/css/main.css
+/venue_check/form
+/js/offline/venue_check_offline.js
+
+FALLBACK:
+/ /home/offline
+
+
+# Resources that require the user to be online.
+NETWORK:
+*
+/venue_check/sync

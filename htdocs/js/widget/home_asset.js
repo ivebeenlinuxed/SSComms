@@ -24,6 +24,7 @@ _asset_search_timeout = null;
 function _asset_search(id, auto) {
 	_asset_search_timeout = null;
 	active_asset = null;
+	clear_actions();
 	if (!isNaN(parseInt(id))) {
 		$("#asset-description").html("Searching...");
 		$.ajax({
@@ -73,13 +74,19 @@ function asset_tryCheckoutActive() {
 	$("#asset-switch-btn").attr("disabled", true);
 	if (active_asset && active_person) {
 		if (!active_asset_out) {
-			//add_fastkey(79, "'O' for Check-out asset #"+active_asset, asset_checkout_btn);
+			//add_fastkey(32, "Space for Check-out asset #"+active_asset, asset_checkout_btn);
 			$("#asset-checkout-btn").attr("disabled", false);
 		} else {
-			//add_fastkey(83, "'S' to switch asset #"+active_asset, asset_switch_btn);
+			//add_fastkey(9, "Tab to switch asset #"+active_asset, asset_switch_btn);
 			$("#asset-switch-btn").attr("disabled", false);
 		}
 	}
+}
+
+function clear_actions() {	
+	$("#asset-checkout-btn").attr("disabled", true);
+	$("#asset-switch-btn").attr("disabled", true);
+	clear_fastkeys();
 }
 
 function asset_checkout_btn() {

@@ -31,11 +31,21 @@ TextWidget = function(el) {
 		return $(this.element).attr("data-result")? $(this.element).attr("data-result") : $(this.element).val();
 	}
 	
+	this.keyUpTimeout = null;
+
 	this.keyup = function() {
+		if (this.keyUpTimeout != null) {
+			clearTimeout(this.keyUpTimeout);
+		}
 		p = $(this.element).parent();
 		if (p.is(".form-group")) {
 			p.removeClass("has-success").removeClass("has-error").addClass("has-warning");
 		}
+		this.keyUpTimeout = setTimeout(this._doKeyUp.bind(this), 2000);
+	}
+
+	this._doKeyUp = function() {
+		this.keyUpTimeout = null;
 		$.ajax({
 			url: "/api/"+this.table+"/"+this.id+".json",
 			type: "put",

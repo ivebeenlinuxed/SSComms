@@ -63,6 +63,7 @@
 				<?php
 				}
 				?>
+				<a href="/widget/text_anywhere/modal?recipients=<?php echo $person->id ?>" data-type="modal">Send Text</a>
 			</div>
 		</div>
 		<div class="panel panel-default">

@@ -1,7 +1,21 @@
 <h3><?php 
 if ($asset->isCheckedOut()) {
 ?>
-<a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success pull-right" id="asset-checkin-btn">Check-In</a>
+<div class="btn-group pull-right">
+<a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success" id="asset-checkin-btn">Check-In</a>
+<?php
+$checkout = $asset->getEquipmentCheckouts()[0];
+$person = $checkout->getPerson();
+if ($person->isPhoneValid()) {
+?>
+<a href="/widget/text_anywhere/modal?recipients=<?php
+				echo $person->id;
+				 ?>&message=Please can you return asset <?php echo $asset->id ?>, it is required at Comms" data-type="api-modal" class="btn btn-success">Text Owner</a>
+
+<?php
+}
+?>
+</div>
 <?php
 }
 ?><?php echo $asset->name ?> (<?php echo $asset->getCategory()->name ?>)</h3>

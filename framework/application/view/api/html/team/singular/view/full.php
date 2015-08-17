@@ -12,6 +12,14 @@
 						data-field="name" data-id="<?php echo $team->id ?>"
 						value="<?php echo $team->name ?>" />
 				</div>
+				<a href="/widget/text_anywhere/modal?recipients=<?php
+				$recpients = array();
+				foreach ($team->getPeople() as $person) {
+					$recipients[] = $person->id;
+				}
+				echo implode(":", $recipients);
+				 ?>&message=Your message" class="btn btn-success" data-type="api-modal">Send Text</a>
+				
 			</div>
 		</div>
 	</div>

@@ -12,11 +12,15 @@ class TextAnywhere {
 	
 	public $message = "";
 	
-	public $this->destinations = array();
+	public $destinations = array();
 	
 	public function __construct() {
 		$this->client_id = \Core\Router::$settings['sms']['client_id'];
 		$this->client_pass = \Core\Router::$settings['sms']['client_pass'];
+	}
+	
+	public function addDestination($num) {
+		$this->destinations[] = $num;
 	}
 	
 	public function Send() {
@@ -28,7 +32,7 @@ class TextAnywhere {
 			throw new \Exception("No destinations selected");
 		}
 		 $sc = new \SoapClient('http://www.textapp.net/webservice/service.asmx?wsdl');
-		 $params = new stdClass();
+		 $params = new \stdClass();
 		 $params->returnCSVString = false;
 		 $params->externalLogin = 'mylogin';
 		 $params->password = 'mypassword';
@@ -44,7 +48,7 @@ class TextAnywhere {
 		 	}
 		 	$params->destinations = implode(", ", $dest);
 		 }
-		 if (preg_match("/[@£$¥èéùìòÇ\fØø\nÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-.\/[0-9]:;<=>\?¡[A-Z]ÄÖÑÜ§¿[a-z]äöñüà\^\{\}\[~\]\|€]+/", $this->body {
+		 if (preg_match("/[@£$¥èéùìòÇ\fØø\nÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-.\/[0-9]:;<=>\?¡[A-Z]ÄÖÑÜ§¿[a-z]äöñüà\^\{\}\[~\]\|€]+/", $this->body)) {
 		 	$params->body = $this->message;
 		 	 $params->characterSetID = 1;
 		 } else {
@@ -57,6 +61,6 @@ class TextAnywhere {
 		 $params->replyData = '';
 		 $params->statusNotificationUrl = '';
 		 $result = $sc->__call('SendSMS', array($params));
-		 return $result->SendSMSResult;
+		 return $result;
 	}
 }

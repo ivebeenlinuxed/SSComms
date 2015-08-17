@@ -9,7 +9,6 @@ class Radio_Limit {
 		if (!$person || !$asset || $asset->category != 2) {
 			return $alerts;
 		}
-		
 		$team = $person->getTeam();
 		
 		$db = \Model\Team::getDB();

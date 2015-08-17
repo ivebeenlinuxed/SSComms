@@ -9,7 +9,9 @@ class Radio_Group {
 	public function getAlerts($asset, $person) {
 		$alerts = array();
 		
-		if (!$asset->isCheckedOut()) {
+		
+		
+		if (!$asset || !$asset->isCheckedOut()) {
 			return $alerts;
 		}
 		

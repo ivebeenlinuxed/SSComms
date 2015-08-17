@@ -10,7 +10,11 @@ class Loader {
 		if (isset($_GET['active_person'])) {
 			$person = \Model\Person::Fetch($_GET['active_person']);
 		}
-		$helpers = array("\Controller\Widget\Homehelper\Radio_Group");
+		$helpers = array(
+			"\Controller\Widget\Homehelper\Radio_Group",
+			"\Controller\Widget\Homehelper\Radio_Limit"
+		
+		);
 		$alerts = array();
 		foreach ($helpers as $helper) {		
 			$rg = new $helper();

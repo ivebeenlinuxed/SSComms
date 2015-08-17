@@ -5,7 +5,7 @@ You may use this alert to move related assets with this radio</p>
 <?php
 foreach (array_merge($linked_assets, array($asset)) as $l_asset) {
 ?>
-<p><input type="checkbox" name="asset_<?php echo $l_asset->id ?>" /><?php echo $l_asset->getName() ?> (#<?php echo $l_asset->id ?>)</p>
+<p><label><input type="checkbox" name="asset_<?php echo $l_asset->id ?>" /><?php echo $l_asset->getName() ?> (#<?php echo $l_asset->id ?>)</label></p>
 <?php
 }
 ?>

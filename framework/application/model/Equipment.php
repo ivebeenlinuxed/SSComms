@@ -56,4 +56,20 @@ class Equipment extends \System\Model\Equipment {
 		}
 		return false;
 	}
+
+	public function CheckOut(Person $p) {
+		if ($this->isCheckedOut()) {
+			return false;
+		}
+		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time()));
+		return true;
+	}
+
+	public function SwitchOwner(Person $p) {
+		if ($this->isCheckedOut()) {
+			$this->CheckIn();
+		}
+		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time()));
+		return true;
+	}
 }

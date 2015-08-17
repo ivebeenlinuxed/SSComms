@@ -8,6 +8,7 @@ $(document).ready(function() {
 	});
 	
 	$("#asset-checkout-btn").click(asset_checkout_btn);
+	$("#asset-switch-btn").click(asset_switch_btn);
 });
 
 function asset_search(id, auto) {
@@ -23,6 +24,7 @@ _asset_search_timeout = null;
 function _asset_search(id, auto) {
 	_asset_search_timeout = null;
 	active_asset = null;
+	clear_actions();
 	if (!isNaN(parseInt(id))) {
 		$("#asset-description").html("Searching...");
 		$.ajax({
@@ -35,11 +37,11 @@ function _asset_search(id, auto) {
 				return function(data) {
 					$("#asset-description").html(data.html);
 					if (data.exists && data.checkout) {
-						add_fastkey(32, "Space for Check-in asset #"+id, function(id) {
+						/*add_fastkey(32, "Space for Check-in asset #"+id, function(id) {
 							return function() {
 								asset_checkin(id);
 							}
-						}(id));
+						}(id));*/
 					}
 					
 					if (data.exists && data.in_service) {
@@ -68,28 +70,71 @@ function _asset_search(id, auto) {
 }
 
 function asset_tryCheckoutActive() {
-	if (active_asset && active_person && !active_asset_out) {
-		$("#asset-checkout-btn").attr("disabled", false);
-		add_fastkey(32, "Space for Check-out asset #"+active_asset, asset_checkout_btn);
-	} else {
-		$("#asset-checkout-btn").attr("disabled", true);
+	$("#asset-checkout-btn").attr("disabled", true);
+	$("#asset-switch-btn").attr("disabled", true);
+	if (active_asset && active_person) {
+		if (!active_asset_out) {
+			//add_fastkey(32, "Space for Check-out asset #"+active_asset, asset_checkout_btn);
+			$("#asset-checkout-btn").attr("disabled", false);
+		} else {
+			//add_fastkey(9, "Tab to switch asset #"+active_asset, asset_switch_btn);
+			$("#asset-switch-btn").attr("disabled", false);
+		}
 	}
+}
+
+function clear_actions() {	
+	$("#asset-checkout-btn").attr("disabled", true);
+	$("#asset-switch-btn").attr("disabled", true);
+	clear_fastkeys();
 }
 
 function asset_checkout_btn() {
 	asset_checkout(active_asset, active_person);
 }
 
+function asset_switch_btn() {
+	asset_switch(active_asset, active_person);
+}
+
 function asset_checkout(asset, person) {
 	$.ajax({
-		url: "/api/equipment_checkout",
+		url: "/widget/home_asset/check_out/"+asset+"/"+person,
 		type: "POST",
-		data: {equipment: asset, person: person, checkout: (Date.now() / 1000)},
+		dataType: "json",
 		success: function(asset) {
-			return function() {
-				toastr.success("Checked out asset #"+asset, "Asset Management");
-				$("#asset-id").val("");
-				asset_search("");
+			return function(data) {
+				if (data == true) {
+					toastr.success("Checked out asset #"+asset, "Asset Management");
+					$("#asset-id").val("");
+					asset_search("");
+				} else {
+					toastr.error("Could not Check Out asset #"+asset+". Is it already out?", "ERROR: Asset Management");
+
+				}
+			}
+		}(asset),
+		error: function() {
+			alert("A problem has occurred");
+		}
+	});
+}
+
+function asset_switch(asset, person) {
+	$.ajax({
+		url: "/widget/home_asset/switch_owner/"+asset+"/"+person,
+		type: "POST",
+		dataType: "json",
+		success: function(asset) {
+			return function(data) {
+				if (data == true) {
+					toastr.success("Switched asset #"+asset, "Asset Management");
+					$("#asset-id").val("");
+					asset_search("");
+				} else {
+					toastr.error("Could not switch asset #"+asset, "ERROR: Asset Management");
+
+				}
 			}
 		}(asset),
 		error: function() {
@@ -120,17 +165,20 @@ function asset_add() {
 }
 
 function asset_checkin(id) {
-	toastr.success("Checked in asset #"+id, "Asset Management");
 	$.ajax({
 		url: "/widget/home_asset/check_in/"+id,
 		dataType: "json",
-		success: function() {
-			$("#asset-id").val("");
-			asset_search("");
+		success: function(data) {
+			if (data == true) {
+				toastr.success("Checked in asset #"+id, "Asset Management");
+				$("#asset-id").val("");
+				asset_search("");
+			} else {
+				toastr.success("Error checking in #"+id+". Is it actually out?", "Asset Management");
+			}
 		},
 		error: function() {
 			alert("A problem has occurred");
 		}
-	});
-	
+	});	
 }

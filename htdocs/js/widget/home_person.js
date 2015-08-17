@@ -17,6 +17,7 @@ function person_search(id, auto) {
 active_person = null;
 _person_search_timeout = null;
 function _person_search(id, auto) {
+	clear_actions();
 	_person_search_timeout = null;
 	active_person = null;
 	
@@ -46,11 +47,11 @@ function _person_search(id, auto) {
 				return function(data) {
 					$("#person-description").html(data.html);
 					if (data.exists && data.checkedout) {
-						add_fastkey(32, "Space for Check-in", function(id) {
+						/*add_fastkey(32, "Space for Check-in", function(id) {
 							return function() {
 								person_checkin(id);
 							}
-						}(id));
+						}(id));*/
 					}
 					
 					if (data.exists) {

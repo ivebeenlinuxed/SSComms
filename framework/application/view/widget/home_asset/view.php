@@ -1,4 +1,10 @@
-<h3><?php echo $asset->name ?> (<?php echo $asset->getCategory()->name ?>)</h3>
+<h3><?php 
+if ($asset->isCheckedOut()) {
+?>
+<a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success pull-right" id="asset-checkin-btn">Check-In</a>
+<?php
+}
+?><?php echo $asset->name ?> (<?php echo $asset->getCategory()->name ?>)</h3>
 <?php 
 if (!$asset->isInService()) {
 ?>
@@ -53,11 +59,5 @@ if (!$asset->isInService()) {
 </table>
 <a href="/api/equipment/<?php echo $asset->id ?>" class="btn btn-success pull-right" id="asset-checkin-btn">Open</button>
 
-<?php 
-if ($asset->isCheckedOut()) {
-?>
-<a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success" id="asset-checkin-btn">Check-In</button>
-<?php
-}
-?>
+
 

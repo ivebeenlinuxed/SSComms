@@ -22,6 +22,19 @@ class Home_Asset {
 			echo json_encode($equipment->CheckIn());
 		}
 	}
+
+	function check_out($equipment, $person) {
+		if (($equipment = \Model\Equipment::Fetch($equipment)) && ($person = \Model\Person::Fetch($person))) {
+			
+			echo json_encode($equipment->CheckOut($person));
+		}
+	}
+
+	function switch_owner($equipment, $person) {
+		if (($equipment = \Model\Equipment::Fetch($equipment)) && ($person = \Model\Person::Fetch($person))) {
+			echo json_encode($equipment->SwitchOwner($person));
+		}
+	}
 	
 	function search_list() {
 		$search = explode(" ", $_GET['search']);

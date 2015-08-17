@@ -19,10 +19,18 @@ function add_fastkey(keycode, message, func) {
 }
 
 $(document).keypress(function(e) {
-	if (fastkey[e.which]) {
-		fastkey[e.which][0]();
+	if (fastkey[e.keyCode || e.charCode]) {
+		fastkey[e.keyCode || e.charCode][0]();
 		e.preventDefault();
 		return;
 	}
 	fastkey = new Array();
 });
+
+function clear_fastkey(keycode) {
+	fastkey[keycode] = false;
+}
+
+function clear_fastkeys() {
+	fastkey = new Array();
+}

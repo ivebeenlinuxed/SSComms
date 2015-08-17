@@ -19,6 +19,8 @@
 		<div class="col-md-2">
 			<button class="btn btn-success btn-block" disabled
 				id="asset-checkout-btn">Check Out &gt;&gt;</button>
+			<button class="btn btn-success btn-block" disabled
+				id="asset-switch-btn">Switch &gt;&gt;</button>
 		</div>
 		<div class="col-md-5">
 			<div class="panel panel-default">

@@ -23,7 +23,7 @@ WHERE equipment_checkout.checkin=0 AND equipment_category.id=2 AND team.id={$tea
 EOF
 );
 		
-		if (isset($this->team_allocations[$team->id]) && $this->team_allocations[$team->id] >= $rows[0]['number']) {
+		if (isset($this->team_allocations[$team->id]) && $this->team_allocations[$team->id] <= $rows[0]['number']) {
 			$alerts[] = \Core\Router::getView("widget/homehelper/radio_limit/alert", array("team"=>$team, "person"=>$person, "allocation"=>$this->team_allocations[$team->id], "out"=>$rows[0]['number']));
 		}
 		return $alerts;

@@ -101,5 +101,15 @@ class Person extends \System\Model\Person {
 		}
 		
 	}
+	
+	public function getCurrentEquipment() {
+		$assets = array();
+		foreach ($this->getEquipmentCheckouts() as $checkout) {
+			if ($checkout->checkin == 0) {
+				$assets[] = $checkout->getEquipment();
+			}
+		}
+		return $assets;
+	}
 }
 Person::Init();

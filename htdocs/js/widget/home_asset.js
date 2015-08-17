@@ -81,11 +81,22 @@ function asset_tryCheckoutActive() {
 			$("#asset-switch-btn").attr("disabled", false);
 		}
 	}
+	$("#home_alerts").empty();
+	$.ajax({
+		url: "/widget/homehelper/loader?active_asset="+active_asset+"&active_person="+active_person,
+		dataType: "json",
+		success: function(data) {
+			data.map(function(el) {
+				$("#home_alerts").append(el);
+			});
+		}
+	});
 }
 
 function clear_actions() {	
 	$("#asset-checkout-btn").attr("disabled", true);
 	$("#asset-switch-btn").attr("disabled", true);
+	$("#home_alerts").empty();
 	clear_fastkeys();
 }
 

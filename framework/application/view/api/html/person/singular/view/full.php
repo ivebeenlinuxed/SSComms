@@ -89,10 +89,11 @@
 					<tbody>
 					<?php 
 					foreach ($person->getEquipmentCheckouts() as $checkout) {
+						$equip = $checkout->getEquipment();
 					?>
 					<tr>
 						<td><?php echo $checkout->id ?></td>
-						<td><a href="/api/equipment/<?php echo $checkout->equipment ?>"><?php echo $checkout->getEquipment()->getName() ?></a></td>
+						<td><a href="/api/equipment/<?php echo $checkout->equipment ?>"><?php echo $equip->getName() ?> (#<?php echo $equip->id ?>)</a></td>
 						<td><?php
 						$d = new DateTime();
 						$d->setTimestamp($checkout->checkout);

@@ -4,7 +4,8 @@ if ($asset->isCheckedOut()) {
 <div class="btn-group pull-right">
 <a data-ajaxless href="javascript:asset_checkin('<?php echo $asset->id ?>')" class="btn btn-success" id="asset-checkin-btn">Check-In</a>
 <?php
-$checkout = $asset->getEquipmentCheckouts()[0];
+$checkout = $asset->getEquipmentCheckouts();
+$checkout = $checkout[count($checkout)-1];
 $person = $checkout->getPerson();
 if ($person->isPhoneValid()) {
 ?>

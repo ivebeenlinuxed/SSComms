@@ -72,4 +72,16 @@ class Equipment extends \System\Model\Equipment {
 		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time()));
 		return true;
 	}
+	
+	public function getCurrentCheckout() {
+		$c = $this->getEquipmentCheckouts();
+		if (count($c) == 0) {
+			return null;
+		}
+		$c = $c[count($c)-1];
+		if ($c->checkin == 0) {
+			return $c;
+		}
+		return null;
+	}
 }

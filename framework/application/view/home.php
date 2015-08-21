@@ -2,7 +2,9 @@
 \Core\Router::loadView("api/html/_template/" . \Core\Router::$disposition . "/top");
 ?>
 <h1 class="text-center">Soul Survivor Comms</h1>
-
+	<div id="home_alerts">
+		
+	</div>
 	<div class="row-fluid">
 		<div class="col-md-5">
 			<div class="panel panel-default">

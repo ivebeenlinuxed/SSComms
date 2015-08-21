@@ -52,6 +52,7 @@
 		?>
 	</select>
 				</div>
+				<div class="btn-group">
 				<?php 
 				if ($person->isActive()) {
 				?>
@@ -59,10 +60,12 @@
 				<?php
 				} else {
 				?>
-				User cannot login
+				<a href="#" data-ajaxless class="btn btn-danger disabled">User cannot login</a>
 				<?php
 				}
 				?>
+				<a href="/widget/text_anywhere/modal?recipients=<?php echo $person->id ?>&message=Your message" class="btn btn-success" data-type="api-modal">Send Text</a>
+				</div>
 			</div>
 		</div>
 		<div class="panel panel-default">
@@ -86,10 +89,11 @@
 					<tbody>
 					<?php 
 					foreach ($person->getEquipmentCheckouts() as $checkout) {
+						$equip = $checkout->getEquipment();
 					?>
 					<tr>
 						<td><?php echo $checkout->id ?></td>
-						<td><a href="/api/equipment/<?php echo $checkout->equipment ?>"><?php echo $checkout->getEquipment()->getName() ?></a></td>
+						<td><a href="/api/equipment/<?php echo $checkout->equipment ?>"><?php echo $equip->getName() ?> (#<?php echo $equip->id ?>)</a></td>
 						<td><?php
 						$d = new DateTime();
 						$d->setTimestamp($checkout->checkout);

@@ -73,5 +73,43 @@ class Person extends \System\Model\Person {
 		}
 		return false;
 	}
+	
+	public function isPhoneValid() {
+		$num = trim($this->phone_number);
+		$num = str_replace("(", "", $num);
+		$num = str_replace(")", "", $num);
+		$num = str_replace(" ", "", $num);
+		if (strlen($num) == 11 && substr($num, 0, 1) == "0") {
+			return true;
+		}
+		if (substr($num, 0, 1) == "+") {
+			return true;
+		}
+	}
+	
+	public function getFormattedPhone() {
+		$num = trim($this->phone_number);
+		$num = str_replace("(", "", $num);
+		$num = str_replace(")", "", $num);
+		$num = str_replace(" ", "", $num);
+		if (substr($num, 0, 1) == "0") {
+			return "+44".substr($num, 1);
+		} elseif (substr($num, 0, 1) == "+") {
+			return $num;
+		} else {
+			return null;
+		}
+		
+	}
+	
+	public function getCurrentEquipment() {
+		$assets = array();
+		foreach ($this->getEquipmentCheckouts() as $checkout) {
+			if ($checkout->checkin == 0) {
+				$assets[] = $checkout->getEquipment();
+			}
+		}
+		return $assets;
+	}
 }
 Person::Init();

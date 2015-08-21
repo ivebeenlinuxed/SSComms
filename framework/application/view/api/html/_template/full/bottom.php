@@ -40,6 +40,7 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 
 
 <script type="text/javascript" src="/js/widget/home_activations.js"></script>
+<script type="text/javascript" src="/js/widget/homehelper/radio_group.js"></script>
 <script type="text/javascript" src="/js/deactivate.js"></script>
 <template id="home-activations-template">
 <tr>

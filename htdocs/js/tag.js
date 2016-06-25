@@ -68,6 +68,7 @@ start_scanning = function() {
 		item = document.importNode(document.querySelector("#asset-item-templ").content, true);
 		item.querySelector("h4").innerHTML = "Asset #"+tag;
 		document.querySelector("#asset-list").appendChild(item);
+		asset_list.push(tag);
 	}
 }
 

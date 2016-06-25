@@ -1,0 +1,15 @@
+{
+  "name": "sscomms",
+  "version": "1.0.0",
+  "description": "Soul Survivor Comms Asset Management System",
+  "main": "index.js",
+  "dependencies": {
+    "qrcode-reader": "^0.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

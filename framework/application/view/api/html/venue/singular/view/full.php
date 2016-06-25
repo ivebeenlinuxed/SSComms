@@ -37,7 +37,7 @@
 					foreach ($venue->getVenueChecks() as $check) {
 					?>
 					<tr>
-						<td><?php echo $check->id ?></td>
+						<td><a href="/api/venue_check/<?php echo $check->id ?>"><?php echo $check->id ?></a></td>
 						<td><?php
 						$d = new DateTime();
 						$d->setTimestamp($check->time);

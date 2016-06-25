@@ -18,7 +18,7 @@ class Router extends \System\Core\Router {
 		if (self::getCurrentPerson() != null) {
 			return $controller;
 		} else {
-			if ($controller[0] == "Controller\Auth") {
+			if ($controller[0] == "Controller\Auth" || $controller[0] == "Controller\Public_Roaming") {
 				return $controller;
 			} else {
 				return array("Controller\Auth", "login", array());

@@ -38,4 +38,9 @@ class Duty_Role extends \System\Controller\Api\Duty_Role {
 	public function Reassign() {
 		(new \Model\DutyRole($_POST['duty_role']))->Reassign(new \Model\Person($_POST['user']));
 	}
+	
+	public function Retire($id) {
+		(new \Model\DutyRole($id))->Retire();
+		header("Location: /api/duty_role/");
+	}
 }

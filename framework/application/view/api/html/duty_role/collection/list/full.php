@@ -25,6 +25,7 @@
 			<td>
 				<div class="btn-group">
 					<a href="/api/duty_role/assign/<?= $role->id ?>" data-type="api-modal" class="btn btn-primary">Assign</a>
+					<a href="/api/duty_role/retire/<?= $role->id ?>" class="btn btn-danger">Retire</a>
 					<a href="/api/duty_role/<?= $role->id ?>/edit" class="btn btn-default">Edit</a>
 				</div>
 			</td>

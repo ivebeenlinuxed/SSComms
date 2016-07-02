@@ -3,9 +3,10 @@ namespace Controller\Widget\LiveHelper;
 
 use Library\Live\TileAction;
 use Library\Live\Tile;
+use Library\Live\TileResult;
 
 class Duty_Role {
-	public function GetTileResult() {
+	public static function GetTileResult($since) {
 		$tr = new TileResult();
 		
 		$assigned = 0;
@@ -26,6 +27,11 @@ class Duty_Role {
 		$tile_action_view = new TileAction();
 		$tile_action_view->action = "/widget/livehelper/duty_role/view_roles";
 		$tile_action_view->action_disposition = TileAction::DISPOSITION_MODAL;
+		$tile->actions[] = $tile_action_view;
 		
+		$tr->current_information[] = $tile;
+		
+		
+		return $tr;
 	}
 }

@@ -1,6 +1,8 @@
 <?php
+namespace Library\Live;
+
 class Plugin {
-	public function __construct() {
-		
+	public static function GetAll() {
+		return array("\\Controller\\Widget\\LiveHelper\\Duty_Role");
 	}
 }

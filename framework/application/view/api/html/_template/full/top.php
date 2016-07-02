@@ -56,9 +56,20 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 					    <li><a href="/">Check In/Out</a></li>
 					</ul>
 				</li>
-				
-				<li><a href="/api/venue">Venues</a></li>
-				<li><a href="/safety/manager">Safety Manager</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Venues <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/api/venue">Venue List</a></li>
+						<li><a href="/api/equipment_category">Event Programme</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/api/safety/manager">Edit Safety Check Form</a></li>
+						<li><a href="/admin/config">System Configuration</a></li>
+					</ul>
+				</li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 					<form class="navbar-form navbar-left" role="search">

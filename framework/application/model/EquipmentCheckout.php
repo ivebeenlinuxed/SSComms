@@ -27,7 +27,7 @@ namespace Model;
  *
  */
 class EquipmentCheckout extends \System\Model\EquipmentCheckout {
-	public function setAttributes($array) {
+	public function setAttributes($array, $set=true) {
 		$u = \Core\Router::getCurrentPerson();
 		if ($u !== null) {
 			if (isset($array['checkout']) && $array['checkout'] > 0) {

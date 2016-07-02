@@ -4,19 +4,36 @@
 <div class="container-fluid">
 	<div class="btn-toolbar" role="toolbar" aria-label="...">
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Check Out Assets</a>
-			<a class="btn btn-default">Switch Assets</a>
-			<a class="btn btn-default">Check In Assets</a>
+			<a class="btn btn-default">Check Out Assets</a> <a
+				class="btn btn-default">Switch Assets</a> <a class="btn btn-default">Check
+				In Assets</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Assign Duty</a>
-			<a class="btn btn-default">Retire Duty</a>
+			<a class="btn btn-default">Assign Duty</a> <a class="btn btn-default">Retire
+				Duty</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Allocate Incident</a>
-			<a class="btn btn-default">Open Task</a>
+			<a class="btn btn-default">Allocate Incident</a> <a
+				class="btn btn-default">Open Task</a>
 		</div>
 	</div>
+	<template id="tile-templ">
+	<div class="media">
+		<div class="media-left">
+			<a href="#"> <img class="media-object"
+				src="http://placehold.it/30x30" alt="...">
+			</a>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading">Media heading</h4>
+			<span></span>
+			<div class="action-btns">
+				<a href="#" class="pull-right btn btn-xs btn-primary">View</a>
+			</div>
+		</div>
+	</div>
+	</template>
+
 	<div class="row">
 		<div class="col-xs-4">
 			<h3>Live Updates</h3>

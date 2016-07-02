@@ -47,14 +47,28 @@ class DutyRolePerson extends \Model\DBObject {
 	* 
 	* @var int $person 
 	*/
-	public $person;	
+	public $person;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $start_time 
+	*/
+	public $start_time;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $end_time 
+	*/
+	public $end_time;	
 	/**
 	 * Lists all the columns in the database
 	 *
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","duty_role","person");
+		return array("id","duty_role","person","start_time","end_time");
 	}
 	
 	/**

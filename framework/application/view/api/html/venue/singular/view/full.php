@@ -16,12 +16,50 @@
 		</div>
 	</div>
 	<div class="col-md-8 col-xs-12">
-		<div class="panel panel-default">
-			<form class="hidden" method="post" action="/api/venue_check" id="frm_venue_check_add">
-			<input type="hidden" name="venue" value="<?php echo $venue->id ?>" />
-			</form>
-			<div class="panel-heading"><a data-ajaxless href="javascript:$('#frm_venue_check_add').get(0).submit()" class="btn btn-success btn-xs pull-right">Add</a>Venue Safety Checks</div>
-			<div class="panel-body">
+		<ul class="nav nav-tabs">
+			<li role="presentation" class="active"><a href="#venue_programme"
+				role="tab" data-toggle="tab">Programme</a></li>
+			<li role="presentation"><a href="#safety_checks" role="tab"
+				data-toggle="tab">Safety Checks</a></li>
+		</ul>
+		<div class="tab-content">
+			<div role="tabpanel" class="tab-pane active" id="venue_programme">
+				<a href="#" class="pull-right btn btn-primary">Add Event</a>
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>Start</th>
+							<th>End</th>
+							<th>Description</th>
+							<th>Status</th>
+							<th class="col-xs-4"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>10:00</td>
+							<td>12:00</td>
+							<td>Main Meeting</td>
+							<td>As Planned</td>
+							<td>
+								<div class="btn-group">
+									<a href="#" class="btn btn-danger">Cancel</a>
+									<a href="#" class="btn btn-primary">Move</a>
+									<a href="#" class="btn btn-default">Delete</a>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div role="tabpanel" class="tab-pane" id="safety_checks">
+				<a data-ajaxless
+					href="javascript:$('#frm_venue_check_add').get(0).submit()"
+					class="btn btn-success btn-xs pull-right">Add</a>
+				<form class="hidden" method="post" action="/api/venue_check"
+					id="frm_venue_check_add">
+					<input type="hidden" name="venue" value="<?php echo $venue->id ?>" />
+				</form>
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -29,31 +67,34 @@
 							<th>Time</th>
 							<th>Actor</th>
 							<th>Status</th>
-							
+
 						</tr>
 					</thead>
 					<tbody>
-					<?php 
-					foreach ($venue->getVenueChecks() as $check) {
-					?>
+					<?php
+					foreach ( $venue->getVenueChecks () as $check ) {
+						?>
 					<tr>
-						<td><a href="/api/venue_check/<?php echo $check->id ?>"><?php echo $check->id ?></a></td>
-						<td><?php
-						$d = new DateTime();
-						$d->setTimestamp($check->time);
-						echo $d->format("d/m/Y H:i");
-						 ?></td>
-						<td><a href="/api/person/<?php echo $check->getActor()->getName() ?>"><?php echo $check->getActor()->getName() ?></a></td>
-						<td><?php
+							<td><a href="/api/venue_check/<?php echo $check->id ?>"><?php echo $check->id ?></a></td>
+							<td><?php
+						$d = new DateTime ();
+						$d->setTimestamp ( $check->time );
+						echo $d->format ( "d/m/Y H:i" );
+						?></td>
+							<td><a
+								href="/api/person/<?php echo $check->getActor()->getName() ?>"><?php echo $check->getActor()->getName() ?></a></td>
+							<td><?php
 						echo $check->status;
 						?></td>
-					</tr>
+						</tr>
 					<?php
 					}
 					?>
 					</tbody>
 				</table>
+
 			</div>
+
 		</div>
 
 	</div>

@@ -9,7 +9,7 @@ class Public_Roaming {
 	public function make_tag($id=0) {
 		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
 		$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-		$tag = \Model\BarcodeTag($id);
+		$tag = new \Model\BarcodeTag($id);
 		    # creates a cipher text compatible with AES (Rijndael block size = 128)
 		    # to keep the text confidential 
 		    # only suitable for encoded input that never ends with value 00h
@@ -22,9 +22,13 @@ class Public_Roaming {
 		    
 		    # encode the resulting cipher text so it can be represented by a string
 		    $ciphertext_base64 = base64_encode($ciphertext);
+		    
+		    \Library\QRcode::png("http://sscomms.bluelightstudios.co.uk/public_roaming/tag?tag=".urlencode($ciphertext_base64), false, QR_ECLEVEL_L, 4);
 	}
 	
-	public function lookup_tag($ciphertext_base64) {
+	public function lookup_tag() {
+		$ciphertext_base64 = $_GET['tag'];
+		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
 		$ciphertext_dec = base64_decode($ciphertext_base64);
     
 		    # retrieves the IV, iv_size should be created using mcrypt_get_iv_size()
@@ -36,12 +40,13 @@ class Public_Roaming {
 		    # may remove 00h valued characters from end of plain text
 		    $plaintext_dec = mcrypt_decrypt(MCRYPT_RIJNDAEL_128, \Core\Router::$settings['secret'],
 				                    $ciphertext_dec, MCRYPT_MODE_CBC, $iv_dec);
-			$e = explode(":", $plaintext_dec);
+			$e = explode(":", trim($plaintext_dec));
 			if (count($e) != 3) {
 				echo json_encode(array());
 				return;
 			}
-			$tag = \Model\BarcodeTag($id);
+			$tag = new \Model\BarcodeTag($e[0]);
+			
 			if ($tag->asset_type != $e[1] || $tag->asset_id != $e[2]) {
 				echo json_encode(array());
 				return;
@@ -49,23 +54,26 @@ class Public_Roaming {
 			
 			$out = array("tag"=>$tag);
 			switch ($tag->asset_type) {
-				case \Model\BarcodeAsset::ASSET_TYPE_PERSON:
+				case \Model\BarcodeTag::ASSET_TYPE_PERSON:
 					$p = new \Model\Person($tag->asset_id);
 					$out['asset'] = array("first_name"=>$p->first_name);
-				case \Model\BarcodeAsset::ASSET_TYPE_EQUIPMENT:
+					break;
+				case \Model\BarcodeTag::ASSET_TYPE_EQUIPMENT:
 					$e = new \Model\Equipment($tag->asset_id);
 					if ($e->isCheckedOut()) {
 						$checkout = $e->getCurrentCheckout();
-						$out['keyholder'] = $checkout->first_name;
+						$out['keyholder'] = $checkout->getPerson()->first_name;
 						$out['checkout_time'] = $checkout->checkout;
 					}
 					$out['asset'] = array(
 						"id"=>$e->id,
 						"name"=>$e->name,
-						"category"=>$e->getCategory()->name;
+						"category"=>$e->getCategory()->name
 					);
+					break;
 					
 			}
+			echo json_encode($out);
 	}
 }
 ?>

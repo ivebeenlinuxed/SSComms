@@ -52,9 +52,28 @@ EOF
 		</div>
 	</div>
 	<div class="col-md-8 col-xs-12">
+		<?php
+		$has_advanced = \Core\Router::hasView("equipment_category/specialist/{$equipment_category->id}");
+		
+		if ($has_advanced) {
+		?>
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="active"><a href="#specialist_view" role="tab" data-toggle="tab">Specialist View</a></li>
+		  <li role="presentation"><a href="#standard_view" role="tab" data-toggle="tab">Standard View</a></li>
+		</ul>
+  <div class="tab-content">
+		<div role="tabpanel" class="tab-pane" id="standard_view">
+		<?php
+		} else {
+		?>
 		<div class="panel panel-default">
 			<div class="panel-heading">Team Members</div>
 			<div class="panel-body">
+		<?php 
+		}
+		?>
+		
+		
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -91,8 +110,21 @@ EOF
 					?>
 					</tbody>
 				</table>
+		<?php 
+		if ($has_advanced) {
+		?>
+		</div>
+		<div role="tabpanel" class="tab-pane active" id="specialist_view">...</div>
+		
+		</div>
+		</div>
+		<?php 
+		} else {
+		?>
 			</div>
 		</div>
-
+		<?php 
+		}
+		?>
 	</div>
 </div>

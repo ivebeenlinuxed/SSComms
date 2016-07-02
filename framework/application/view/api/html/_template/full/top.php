@@ -38,22 +38,35 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="/home/activation">Activations</a></li>
-				<li><a href="/api/person">People</a></li>
-				<li><a href="/api/equipment">Equipment</a></li>
-				<li><a href="/api/team">Teams</a></li>
-				<li><a href="/api/equipment_category">Equipment Category</a></li>
+				<li><a href="/live">Live View</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Team <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/api/person">Person List</a></li>
+						<li><a href="/api/team">Teams List</a></li>
+						<li><a href="/api/duty_role">Duty Roles List</a></li>
+					    <li><a href="/home/activation">Device Activations</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Equipment <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/api/equipment">Equipment List</a></li>
+						<li><a href="/api/equipment_category">Equipment Categories</a></li>
+					    <li><a href="/">Check In/Out</a></li>
+					</ul>
+				</li>
+				
 				<li><a href="/api/venue">Venues</a></li>
 				<li><a href="/safety/manager">Safety Manager</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sync Status <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-					    <li><a href="#">Venue Checks</a></li>
-					</ul>
-				</li>
-				<li><a href="/auth/logout">Logout</a></li>
+					<form class="navbar-form navbar-left" role="search">
+						<div class="form-group">
+							<input type="text" class="form-control" placeholder="Search">
+						</div>
+					</form>
+					<li><a href="/auth/logout">Logout</a></li>
 			</ul>
 		</div>
 		<!-- /.navbar-collapse -->

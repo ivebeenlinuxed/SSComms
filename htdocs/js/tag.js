@@ -19,6 +19,11 @@ start_scanning = function() {
 			video.src = stream;
 			video.play();
 		}, errBack);
+	} else if(false && navigator.mediaDevices.getUserMedia) { // WebKit-prefixed
+		navigator.mediaDevices.getUserMedia().then(videoObj, function(stream){
+			video.src = window.URL.createObjectURL(stream);
+			video.play();
+		}, errBack);
 	} else if(navigator.webkitGetUserMedia) { // WebKit-prefixed
 		navigator.webkitGetUserMedia(videoObj, function(stream){
 			video.src = window.webkitURL.createObjectURL(stream);
@@ -36,7 +41,7 @@ start_scanning = function() {
 		if (typeof data == "undefined") {
 			return;
 		}
-		address = "/public_roaming/tag/";
+		address = "/public_roaming/tag?tag=";
 		console.log(data, address);
 		if (data.indexOf(address) == -1) {
 			alert("We don't recognise this barcode - are you sure it's ours?");
@@ -66,9 +71,28 @@ start_scanning = function() {
 		
 		
 		item = document.importNode(document.querySelector("#asset-item-templ").content, true);
-		item.querySelector("h4").innerHTML = "Asset #"+tag;
+		item.querySelector("h4").innerHTML = "Looking up Item...";
+		item.querySelector("a").setAttribute("id", randid = "assetrow-"+Math.round(Math.random()*10000));
 		document.querySelector("#asset-list").appendChild(item);
+		item = document.querySelector("#"+randid);
 		asset_list.push(tag);
+		
+		fetch("/public_roaming/lookup_tag?tag="+tag, {
+			credentials: "include"
+		}).then((response) => {
+			response.json().then((json) => {
+				if (json.tag.id == 2) {
+					item.querySelector("h4").innerHTML = json.asset.name+" - "+json.asset.category;
+					if (json.asset.keyholder) {
+						item.querySelector("p").innerHTML = "Signed out to "+json.keyholder;
+					} else {
+						item.querySelector("p").innerHTML = "Not signed out";
+					}
+				} else if (json.tag.id == 1) {
+					console.log("Submit!!!");
+				}
+			});
+		});
 	}
 }
 

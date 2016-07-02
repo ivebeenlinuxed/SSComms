@@ -27,4 +27,7 @@ namespace Controller\Api;
  *
  */
 class Person extends \System\Controller\Api\Person {
+	public function Search() {
+		echo json_encode(array("data"=>\Model\Person::Search(array("first_name", "last_name"), $_GET['q'], null, true)));
+	}
 }

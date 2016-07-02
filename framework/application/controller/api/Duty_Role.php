@@ -27,4 +27,15 @@ namespace Controller\Api;
  *
  */
 class Duty_Role extends \System\Controller\Api\Duty_Role {
+	public function Add() {
+		\Core\Router::loadView("api/html/duty_role/special/add");
+	}
+	
+	public function Assign($id) {
+		\Core\Router::loadView("api/html/duty_role/special/assign", array("role"=>new \Model\DutyRole($id)));
+	}
+	
+	public function Reassign() {
+		(new \Model\DutyRole($_POST['duty_role']))->Reassign(new \Model\Person($_POST['user']));
+	}
 }

@@ -478,36 +478,50 @@ abstract class DBObject implements \Library\Database\LinqObject {
 	/**
 	 * Searches the database using automatically inserted wildcards
 	 *
-	 * @param string          $field      The fields to search
+	 * @param string|string[] $field      The fields to search
 	 * @param string|string[] $expression Expression to look for
 	 *
 	 * @throws DBException
 	 *
-	 * @return multitype:Ambigous <unknown, string> The Primary Key
+	 * @return \Model\DBObject[]
 	 */
-	public static function Search($field, $expression) {
-		$c = get_called_class();
-		$DB = $c::getDB();
-		if (@strpos(" ", $expression) !== false) {
+	public static function Search($field, $expression, $limit=null, $case_insensitive=false) {
+		$DB = static::getDB();
+		if (@strpos($expression) !== false) {
 			$a = explode(" ", $expression);
 		} else {
 			$a = array($expression);
 		}
 
-		$select = $DB->Select($c);
-		$and = $DB->getAndFilter();
+		$select = $DB->Select($c = get_called_class());
+		$and = $select->getOrFilter();
+		
 
-
-		foreach ($a as $s) {
-			if ($s == "") {
-				continue;
-			}
-			$and->like($field, "%".$s."%");
+		if (!is_array($field)) {
+			$field = array($field);
 		}
 
+		foreach ($a as $s) {
+			$or = $select->getOrFilter();
+			foreach ($field as $f) {
+				if ($s == "") {
+					continue;
+				}
+				if ($case_insensitive) {
+					$or->like("LOWER(".$DB->escape_string($f).")", "%".strtolower($s)."%", \Library\Database\LinqEquality::RAW);
+				} else {
+					$or->like($f, "%".$s."%");
+				}
+			}
+			$and->subEq($or);
+		}
 		$select->setFilter($and);
+		if ($limit) {
+			$select->setLimit(0, $limit);
+		}
+		
 		$q = $select->Exec();
-		if ($DB->errno != 0) {
+		if (isset($DB->errno) && $DB->errno != 0) {
 			throw new DBException(self::getError($DB));
 		}
 

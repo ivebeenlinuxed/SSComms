@@ -45,9 +45,30 @@ class VenueCheck extends \Model\DBObject {
 	/**
 	* int(11)
 	* 
+	* @var int $time_checkout 
+	*/
+	public $time_checkout;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $time_expires 
+	*/
+	public $time_expires;
+	
+	/**
+	* int(11)
+	* 
 	* @var int $time_completed 
 	*/
 	public $time_completed;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $time_checkin 
+	*/
+	public $time_checkin;
 	
 	/**
 	* int(11)
@@ -68,7 +89,7 @@ class VenueCheck extends \Model\DBObject {
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","venue","time_completed","actor","status");
+		return array("id","venue","time_checkout","time_expires","time_completed","time_checkin","actor","status");
 	}
 	
 	/**

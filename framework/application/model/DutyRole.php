@@ -27,4 +27,30 @@ namespace Model;
  *
  */
 class DutyRole extends \System\Model\DutyRole {
+	public function getCurrentlyAssigned() {
+		$assign = DutyRolePerson::getByAttributes(array("duty_role"=>$this->id, "end_time"=>false));
+		
+		return count($assign) > 0? $assign[0] : null;
+	}
+	
+	public function isAssigned() {
+		return $this->getCurrentlyAssigned() != null;
+	}
+	
+	public function Reassign(\Model\Person $p) {
+		$current = $this->getCurrentlyAssigned();
+		if ($current) {
+			$current->setAttribute("end_time", time());
+		}
+		
+		return \Model\DutyRolePerson::Create(array("duty_role"=>$this->id, "person"=>$p->id, "start_time"=>time()));
+	}
+	
+	public function Retire() {
+		$current = $this->getCurrentlyAssigned();
+		if ($current) {
+			$current->setAttribute("end_time", time());
+		}
+		return $current;
+	}
 }

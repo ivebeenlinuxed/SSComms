@@ -55,7 +55,7 @@
 			<div role="tabpanel" class="tab-pane" id="safety_checks">
 				<a data-ajaxless
 					href="javascript:$('#frm_venue_check_add').get(0).submit()"
-					class="btn btn-success btn-xs pull-right">Add</a>
+					class="btn btn-primary pull-right">Add</a>
 				<form class="hidden" method="post" action="/api/venue_check"
 					id="frm_venue_check_add">
 					<input type="hidden" name="venue" value="<?php echo $venue->id ?>" />

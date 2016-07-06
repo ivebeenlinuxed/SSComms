@@ -42,6 +42,12 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 <script type="text/javascript" src="/js/widget/home_activations.js"></script>
 <script type="text/javascript" src="/js/widget/homehelper/radio_group.js"></script>
 <script type="text/javascript" src="/js/deactivate.js"></script>
+
+
+<link rel="import" id="person-searcher-import" href="/widget/person_searcher/template">
+<script type="text/javascript" src="/js/widget/person_searcher.js"></script>
+
+
 <template id="home-activations-template">
 <tr>
 	<td></td>

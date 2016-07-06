@@ -60,14 +60,25 @@ if ($_SERVER['HTTP_X_REQUESTED_WITH'] == "XMLHttpRequest") {
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Venues <span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/api/venue">Venue List</a></li>
-						<li><a href="/api/equipment_category">Event Programme</a></li>
+						<li><a href="/programme">Event Programme</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Delegates <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/api/church">Church List</a></li>
+						<li><a href="/api/camp_location">Camping Areas</a></li>
+						<li><a href="/api/camp_location">Upload Information</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="/api/incident">Incident List</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="/api/safety/manager">Edit Safety Check Form</a></li>
+						<li><a href="/safety/manager">Edit Safety Check Form</a></li>
 						<li><a href="/admin/config">System Configuration</a></li>
+						<li><a href="/admin/tag">Tags</a></li>
 					</ul>
 				</li>
 			</ul>

@@ -4,7 +4,7 @@
 <div class="container-fluid">
 	<div class="btn-toolbar" role="toolbar" aria-label="...">
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Check Out Assets</a> <a
+			<a class="btn btn-default" href="/widget/livehelper/asset_change/change_asset" data-type="api-modal">Check Out Assets</a> <a
 				class="btn btn-default">Switch Assets</a> <a class="btn btn-default">Check
 				In Assets</a>
 		</div>

@@ -103,12 +103,12 @@ class DutyRolePerson extends \Model\DBObject {
 		$std->table = "duty_role";
 		$std->field = "id";
 		
-		$keys[duty_role] = $std;	
+		$keys['duty_role'] = $std;	
 		$std = new \stdClass();
 		$std->table = "person";
 		$std->field = "id";
 		
-		$keys[person] = $std;	
+		$keys['person'] = $std;	
 		return $keys;
 	}
 		

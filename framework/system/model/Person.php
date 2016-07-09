@@ -36,9 +36,9 @@ class Person extends \Model\DBObject {
 	public $id;
 	
 	/**
-	* int(11)
+	* bigint(20)
 	* 
-	* @var int $wristband_id 
+	* @var unknown_type $wristband_id 
 	*/
 	public $wristband_id;
 	
@@ -159,7 +159,7 @@ class Person extends \Model\DBObject {
 		$std->table = "team";
 		$std->field = "id";
 		
-		$keys[team] = $std;	
+		$keys['team'] = $std;	
 		return $keys;
 	}
 		

@@ -1,5 +1,5 @@
 <?php 
-if ($controller->protocol['redirect']) {
+if (isset($controller->protocol['redirect'])) {
 	header("Location:  {$controller->protocol['redirect']}");
 	return;
 }

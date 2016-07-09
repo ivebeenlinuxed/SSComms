@@ -784,12 +784,12 @@ abstract class DBObject implements \Library\Database\LinqObject {
 	
 	public static function getFieldPropertiesByColumn($col) {
 		$class = get_called_class();
-		if (($map = static::$data_map[$col]) && is_object($map)) {
+		if (isset(static::$data_map[$col]) && ($map = static::$data_map[$col]) && is_object($map)) {
 			if (!$map->title) {
 				$map->title = \System\Library\Lexical::humanize($col);
 			}
 		} else {
-			if ($key = $class::getForeignKeys()[$col]) {
+			if (isset($class::getForeignKeys()[$col]) && $key = $class::getForeignKeys()[$col]) {
 				$map = new \Library\FieldProperties();
 				$map->widget = \Library\Widget\Widget::FOREIGN_KEY;
 				$map->title = \System\Library\Lexical::humanize($col);

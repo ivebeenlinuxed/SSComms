@@ -125,7 +125,7 @@ EOF;
 		\$std->table = "{$key[1]}";
 		\$std->field = "{$key[2]}";
 		
-		\$keys[{$key[0]}] = \$std;	
+		\$keys['{$key[0]}'] = \$std;	
 EOF;
 	}
 	

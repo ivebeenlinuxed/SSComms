@@ -117,22 +117,22 @@ class EquipmentCheckout extends \Model\DBObject {
 		$std->table = "equipment";
 		$std->field = "id";
 		
-		$keys[equipment] = $std;	
+		$keys['equipment'] = $std;	
 		$std = new \stdClass();
 		$std->table = "person";
 		$std->field = "id";
 		
-		$keys[person] = $std;	
+		$keys['person'] = $std;	
 		$std = new \stdClass();
 		$std->table = "person";
 		$std->field = "id";
 		
-		$keys[in_actor] = $std;	
+		$keys['in_actor'] = $std;	
 		$std = new \stdClass();
 		$std->table = "person";
 		$std->field = "id";
 		
-		$keys[out_actor] = $std;	
+		$keys['out_actor'] = $std;	
 		return $keys;
 	}
 		

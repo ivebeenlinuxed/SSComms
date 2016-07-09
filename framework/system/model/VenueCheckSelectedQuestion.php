@@ -89,12 +89,12 @@ class VenueCheckSelectedQuestion extends \Model\DBObject {
 		$std->table = "venue";
 		$std->field = "id";
 		
-		$keys[venue] = $std;	
+		$keys['venue'] = $std;	
 		$std = new \stdClass();
 		$std->table = "venue_check_question";
 		$std->field = "id";
 		
-		$keys[venue_check_question] = $std;	
+		$keys['venue_check_question'] = $std;	
 		return $keys;
 	}
 		

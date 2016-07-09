@@ -63,7 +63,7 @@ abstract class ModelController extends \Controller\BaseController {
 		$this->searchParams = $this->ConditionalRequest();
 		
 		// Sets the ORDER BY
-		if ($this->protocol['order']) {
+		if (isset($this->protocol['order'])) {
 			$this->order = json_decode($this->protocol['order']);
 		}
 		
@@ -81,7 +81,7 @@ abstract class ModelController extends \Controller\BaseController {
 		}
 		
 		//Pagination needs to be initialised from headers
-		if ($_SERVER['HTTP_X_PAGE']) {
+		if (isset($_SERVER['HTTP_X_PAGE'])) {
 			$epg = explode("/", $_SERVER['HTTP_X_PAGE']);
 			$this->page = (int)$epg[0];
 			if ($epg[1]) {
@@ -89,14 +89,14 @@ abstract class ModelController extends \Controller\BaseController {
 			}
 		}
 		
-		if ($_SERVER['HTTP_X_DISPOSITION']) {
+		if (isset($_SERVER['HTTP_X_DISPOSITION'])) {
 			$this->disposition = $_SERVER['HTTP_X_DISPOSITION'];
 		}
 		
 		
 		
 		
-		if ($_SERVER['HTTP_X_REQUEST_METHOD']) {
+		if (isset($_SERVER['HTTP_X_REQUEST_METHOD'])) {
 			$_SERVER['REQUEST_METHOD'] = $_SERVER['HTTP_X_REQUEST_METHOD'];
 		}
 		
@@ -203,7 +203,7 @@ abstract class ModelController extends \Controller\BaseController {
 	protected function getFields() {
 		$class = $this->getModelClass();
 		//Get fields requested
-		if ($this->protocol['fields']) {
+		if (isset($this->protocol['fields'])) {
 			return json_decode($this->protocol['fields']);
 		} else {
 			$fields = array();
@@ -241,7 +241,7 @@ abstract class ModelController extends \Controller\BaseController {
 	}
 
 	protected function ConditionalRequest() {
-		if ($this->protocol['where']) {
+		if (isset($this->protocol['where'])) {
 			$conditions = json_decode($this->protocol['where']);
 		} else {
 			$conditions = array();

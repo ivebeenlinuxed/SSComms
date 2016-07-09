@@ -3,9 +3,9 @@ $rows = $controller->data;
 $class = $controller->class;
 $key = $class::getPrimaryKey()[0];
 $query = array();
-$query['__where'] = $_GET['__where'];
+$query['__where'] = isset($_GET['__where']) ? $_GET['__where'] : "";
 $query['__X_PAGE'] = ($controller->current_page)."/".$controller->page_size;
-if ($controller->sort) {
+if (isset($controller->sort)) {
 	if ($controller->sort_asc) {
 		$query['__order'] = json_encode(array(array($controller->sort, "ASC")));
 	} else {

@@ -1,5 +1,5 @@
 <?php 
-if ($_GET['__redirect']) {
+if (isset($_GET['__redirect'])) {
 	header("Location:  {$_GET['__redirect']}");
 	return;
 }

@@ -6,26 +6,6 @@ class Public_Roaming {
 		\Core\Router::loadView("public_roaming/tag");
 	}
 	
-	public function make_tag($id=0) {
-		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
-		$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
-		$tag = new \Model\BarcodeTag($id);
-		    # creates a cipher text compatible with AES (Rijndael block size = 128)
-		    # to keep the text confidential 
-		    # only suitable for encoded input that never ends with value 00h
-		    # (because of default zero padding)
-		    $ciphertext = mcrypt_encrypt(MCRYPT_RIJNDAEL_128, \Core\Router::$settings['secret'],
-				                 $tag->id.":".$tag->asset_type.":".$tag->asset_id, MCRYPT_MODE_CBC, $iv);
-
-		    # prepend the IV for it to be available for decryption
-		    $ciphertext = $iv . $ciphertext;
-		    
-		    # encode the resulting cipher text so it can be represented by a string
-		    $ciphertext_base64 = base64_encode($ciphertext);
-		    
-		    \Library\QRcode::png("http://sscomms.bluelightstudios.co.uk/public_roaming/tag?tag=".urlencode($ciphertext_base64), false, QR_ECLEVEL_L, 4);
-	}
-	
 	public function lookup_tag() {
 		$ciphertext_base64 = $_GET['tag'];
 		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);

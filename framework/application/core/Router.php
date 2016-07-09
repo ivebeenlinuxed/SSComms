@@ -13,7 +13,7 @@ class Router extends \System\Core\Router {
 	protected static $listeners;
 	
 	public static function getController($array) {
-		session_start();
+		//session_start();
 		$controller = parent::getController($array);
 		if (self::getCurrentPerson() != null) {
 			return $controller;

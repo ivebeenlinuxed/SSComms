@@ -3,3 +3,4 @@
 build/logs/
 tests/framework/
 config.php
+/tmp/

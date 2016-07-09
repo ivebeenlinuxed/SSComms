@@ -124,12 +124,12 @@ class VenueCheck extends \Model\DBObject {
 		$std->table = "venue";
 		$std->field = "id";
 		
-		$keys[venue] = $std;	
+		$keys['venue'] = $std;	
 		$std = new \stdClass();
 		$std->table = "person";
 		$std->field = "id";
 		
-		$keys[actor] = $std;	
+		$keys['actor'] = $std;	
 		return $keys;
 	}
 		

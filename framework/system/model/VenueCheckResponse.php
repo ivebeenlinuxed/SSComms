@@ -96,12 +96,12 @@ class VenueCheckResponse extends \Model\DBObject {
 		$std->table = "venue_check_question";
 		$std->field = "id";
 		
-		$keys[venue_check_question] = $std;	
+		$keys['venue_check_question'] = $std;	
 		$std = new \stdClass();
 		$std->table = "venue_check";
 		$std->field = "id";
 		
-		$keys[venue_check] = $std;	
+		$keys['venue_check'] = $std;	
 		return $keys;
 	}
 		

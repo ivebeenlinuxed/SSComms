@@ -1,11 +1,11 @@
 <?php
 \Core\Router::loadView ( "api/html/_template/full/top" );
 ?>
-<div class="container-fluid">
+<div class="container-fluid" id="live-view">
 	<div class="btn-toolbar" role="toolbar" aria-label="...">
 		<div class="btn-group" role="group" aria-label="...">
 			<a class="btn btn-default" href="/widget/livehelper/asset_change/change_asset" data-type="api-modal">Check Out Assets</a> <a
-				class="btn btn-default">Switch Assets</a> <a class="btn btn-default">Check
+				class="btn btn-default">Switch Assets</a> <a data-type="api-modal" href="/widget/livehelper/asset_change/in" class="btn btn-default">Check
 				In Assets</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">
@@ -27,9 +27,11 @@
 		<div class="media-body">
 			<h4 class="media-heading">Media heading</h4>
 			<span></span>
-			<div class="action-btns">
-				<a href="#" class="pull-right btn btn-xs btn-primary">View</a>
+			<div class="clearfix"></div>
+			<div class="action-btns btn-group pull-right">
+				
 			</div>
+			<div class="clearfix"></div>
 		</div>
 	</div>
 	</template>
@@ -37,70 +39,20 @@
 	<div class="row">
 		<div class="col-xs-4">
 			<h3>Live Updates</h3>
-			<div class="well">
-				<div class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object"
-							src="http://placehold.it/30x30" alt="...">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Media heading</h4>
-						...
-					</div>
-				</div>
+			<div class="well live-update-list">
+				
 			</div>
 		</div>
 		<div class="col-xs-4">
 			<h3>Current Information</h3>
-			<div class="well">
-				<div class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object"
-							src="http://placehold.it/30x30" alt="...">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Duty Roles</h4>
-						5/6 key roles are currently on duty
-
-						<div>
-							<a href="#" class="pull-right btn btn-xs btn-primary">View</a>
-						</div>
-					</div>
-				</div>
-				<div class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object"
-							src="http://placehold.it/30x30" alt="...">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Venue Changes</h4>
-						There are 3 venue changes today
-						<div>
-							<a href="#" class="pull-right btn btn-xs btn-primary">View</a>
-						</div>
-					</div>
-				</div>
-				<div class="media">
-					<div class="media-left">
-						<a href="#"> <img class="media-object"
-							src="http://placehold.it/30x30" alt="...">
-						</a>
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Radio Allocations</h4>
-						Currently 34 radios in service, 12 in stock, 2 teams over limits
-						<div>
-							<a href="#" class="pull-right btn btn-xs btn-primary">View</a>
-						</div>
-					</div>
-				</div>
+			<div class="well current-information-list">
+				
 			</div>
 		</div>
 		<div class="col-xs-4">
 			<h3>Outstanding Jobs</h3>
+			<div class="well outstanding-job-list">
+			</div>
 		</div>
 	</div>
 </div>

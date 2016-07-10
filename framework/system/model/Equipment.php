@@ -54,14 +54,21 @@ class Equipment extends \Model\DBObject {
 	* 
 	* @var int $in_service 
 	*/
-	public $in_service;	
+	public $in_service;
+	
+	/**
+	* varchar(50)
+	* 
+	* @var string $tag_id 
+	*/
+	public $tag_id;	
 	/**
 	 * Lists all the columns in the database
 	 *
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","name","category","in_service");
+		return array("id","name","category","in_service","tag_id");
 	}
 	
 	/**

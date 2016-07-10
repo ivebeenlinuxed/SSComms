@@ -44,9 +44,16 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
 <script type="text/javascript" src="/js/deactivate.js"></script>
 
 
+<script type="text/javascript" src="/js/widget/live.js"></script>
+
+
 <link rel="import" id="person-searcher-import" href="/widget/person_searcher/template">
 <script type="text/javascript" src="/js/widget/person_searcher.js"></script>
 
+
+
+<link rel="import" id="asset-listbox-import" href="/widget/asset_listbox/template">
+<script type="text/javascript" src="/js/widget/asset_listbox.js"></script>
 
 <template id="home-activations-template">
 <tr>

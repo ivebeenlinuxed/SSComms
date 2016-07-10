@@ -45,7 +45,7 @@ class EquipmentCheckout extends \System\Model\EquipmentCheckout {
 		$u = \Core\Router::getCurrentPerson();
 		if ($u !== null) {
 			$array['out_actor'] = $u->id;
-			if ($array['checkin'] > 0) {
+			if (isset($array['checkin']) && $array['checkin'] > 0) {
 				$array['in_actor'] = $u->id;
 			}
 		}

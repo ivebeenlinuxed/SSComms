@@ -13,6 +13,12 @@
 						value="<?php echo $equipment->name ?>" />
 				</div>
 				<div class="form-group">
+					<label class="control-label">Tag ID</label> <input
+						class="form-control" type="text" data-table="equipment"
+						data-field="tag_id" data-id="<?php echo $equipment->id ?>"
+						value="<?php echo $equipment->tag_id ?>" />
+				</div>
+				<div class="form-group">
 					<label class="control-label">In Service</label>
 					<input type="checkbox" data-table="equipment" data-field="in_service"
 					data-activated="1" data-deactivated="0"

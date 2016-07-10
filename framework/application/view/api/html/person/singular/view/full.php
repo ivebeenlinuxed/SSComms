@@ -88,7 +88,7 @@
 					</thead>
 					<tbody>
 					<?php 
-					foreach ($person->getEquipmentCheckouts() as $checkout) {
+					foreach ($person->getEquipmentCheckoutsFromPerson() as $checkout) {
 						$equip = $checkout->getEquipment();
 					?>
 					<tr>

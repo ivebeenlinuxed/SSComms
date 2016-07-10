@@ -34,7 +34,7 @@ class PersonSearcher {
 			
 		});
 		this.onselect = function() {};
-		console.log(this.input);
+
 		window.setTimeout(() => { this.input.focus(); }, 1000);
 	}
 	
@@ -55,7 +55,9 @@ class PersonSearcher {
 					node.person_data = row;
 					node.querySelector("h4").innerHTML = row.first_name+" "+row.last_name;
 					node.querySelector("a").dataset.user = row.id;
-					node.querySelector("a").addEventListener("click", this.onselect);
+					node.querySelector("a").addEventListener("click", () => {
+						this.onselect(row);
+					});
 					this.container.appendChild(node);
 				}
 			});

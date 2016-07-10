@@ -27,4 +27,7 @@ namespace Controller\Api;
  *
  */
 class Equipment extends \System\Controller\Api\Equipment {
+	public function add() {
+		\Core\Router::loadView("api/html/equipment/special/add");
+	}
 }

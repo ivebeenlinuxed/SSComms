@@ -11,6 +11,11 @@
 						class="form-control" type="text" data-table="team"
 						data-field="name" data-id="<?php echo $team->id ?>"
 						value="<?php echo $team->name ?>" />
+				</div><div class="form-group">
+					<label class="control-label">Radio Allocation (-1 to ignore)</label> <input
+						class="form-control" type="number" data-table="team"
+						data-field="radio_allocation" data-id="<?php echo $team->id ?>"
+						value="<?php echo $team->radio_allocation ?>" />
 				</div>
 				<a href="/widget/text_anywhere/modal?recipients=<?php
 				$recpients = array();

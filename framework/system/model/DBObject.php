@@ -494,7 +494,7 @@ abstract class DBObject implements \Library\Database\LinqObject {
 		}
 
 		$select = $DB->Select($c = get_called_class());
-		$and = $select->getOrFilter();
+		$and = $select->getAndFilter();
 		
 
 		if (!is_array($field)) {

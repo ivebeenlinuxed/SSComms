@@ -6,6 +6,16 @@ use Library\Live\Tile;
 use Library\Live\TileResult;
 
 class Duty_Role {
+	public function assign_person() {
+		\Core\Router::loadView("live/helper/duty_role/assign_person");
+	}
+	
+	public function assign_role() {
+		
+		\Core\Router::loadView("live/helper/duty_role/assign_role");
+		
+	}
+	
 	public static function GetTileResult($since) {
 		$tr = new TileResult();
 		

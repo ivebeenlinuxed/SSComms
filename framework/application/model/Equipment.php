@@ -51,7 +51,7 @@ class Equipment extends \System\Model\Equipment {
 	public function CheckIn() {
 		if ($this->isCheckedOut()) {
 			$checkouts = $this->getEquipmentCheckouts();
-			$checkouts[count($checkouts)-1]->setAttribute("checkin", time());
+			$checkouts[count($checkouts)-1]->setAttributes(array("checkin"=>time(), "in_actor"=>\Core\Router::getCurrentPerson()->id));
 			return true;
 		}
 		return false;
@@ -61,7 +61,7 @@ class Equipment extends \System\Model\Equipment {
 		if ($this->isCheckedOut()) {
 			return false;
 		}
-		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time()));
+		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time(), "out_actor"=>\Core\Router::getCurrentPerson()->id));
 		return true;
 	}
 
@@ -69,7 +69,7 @@ class Equipment extends \System\Model\Equipment {
 		if ($this->isCheckedOut()) {
 			$this->CheckIn();
 		}
-		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time()));
+		\Model\EquipmentCheckout::Create(array("equipment"=>$this->id, "person"=>$p->id, "checkout"=>time(), "out_actor"=>\Core\Router::getCurrentPerson()->id));
 		return true;
 	}
 	

@@ -162,7 +162,7 @@ class StdLib {
 	public static function object_order($aObj, $property) {
 		$cursor = 1;
 		$comparison = 1;
-		while ($cursor <= count($aObj)) {
+		while ($cursor <= count($aObj)-1) {
 			if ($aObj[$comparison]->$property > $aObj[$comparison-1]->$property) {
 				//If property of the higher object is less than lower one swap
 				$temp = $aObj[$comparison-1];

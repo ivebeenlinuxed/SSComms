@@ -4,12 +4,13 @@
 <div class="container-fluid" id="live-view">
 	<div class="btn-toolbar" role="toolbar" aria-label="...">
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default" href="/widget/livehelper/asset_change/change_asset" data-type="api-modal">Check Out Assets</a> <a
-				class="btn btn-default">Switch Assets</a> <a data-type="api-modal" href="/widget/livehelper/asset_change/in" class="btn btn-default">Check
+			<a class="btn btn-default" href="/widget/livehelper/asset_change/change_asset" data-type="api-modal">Check Out Assets</a>
+			<a data-type="api-modal" href="/widget/livehelper/asset_change/in" class="btn btn-default">Check
 				In Assets</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Assign Duty</a> <a class="btn btn-default">Retire
+			<a data-type="api-modal" href="/widget/livehelper/duty_role/assign_person" class="btn btn-default">Assign Duty</a>
+			<a data-type="api-modal" href="/widget/livehelper/duty_role/retire_role" class="btn btn-default">Retire
 				Duty</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">

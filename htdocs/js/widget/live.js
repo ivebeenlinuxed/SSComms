@@ -41,6 +41,11 @@ class LiveView {
 					tile_container.insertBefore(node, tile_container.firstChild);
 				}
 				
+				var current_tiles = document.querySelectorAll(".live-update-list > div");
+				for (var i=10; i<current_tiles.length; i++) {
+					current_tiles[i].remove();
+				}
+				
 				var tile_list = json.tiles.current_information;
 				var tile_container = document.querySelector(".current-information-list");
 				tile_container.innerHTML = "";

@@ -31,17 +31,11 @@ class TextAnywhere {
 		if (count($this->destinations) == 0) {
 			throw new \Exception("No destinations selected");
 		}
-		require BOILER_LOCATION.'/../vendor/autoload.php';
-		$mail = new \PHPMailer();
-		$mail->setFrom("soulsurvivorcomms@gmail.com");
 		
 		$dest = array();
 		 foreach ($this->destinations as $destination) {
-		 	$mail->addAddress($destination."@sms.textapp.net");
+		 	mail($destination."@sms.textapp.net", "", $this->message, "From: soulsurvivorcomms@gmail.com");
 		 }
-		 $mail->Subject = "";
-		 $mail->Body = $this->message;
-		 $mail->send();
-		 return $mail->send();
+		 return true;
 	}
 }

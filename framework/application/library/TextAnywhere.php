@@ -34,7 +34,7 @@ class TextAnywhere {
 		
 		$dest = array();
 		 foreach ($this->destinations as $destination) {
-		 	mail($destination."@sms.textapp.net", "", $this->message, "From: soulsurvivorcomms@gmail.com");
+		 	mail($destination."@sms.textapp.net", wordwrap($this->message, 70), " - Soul Survivor Comms", "From: soulsurvivorcomms@gmail.com");
 		 }
 		 return true;
 	}

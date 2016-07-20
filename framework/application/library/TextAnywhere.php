@@ -37,12 +37,7 @@ class TextAnywhere {
 		
 		$dest = array();
 		 foreach ($this->destinations as $destination) {
-		 	if (substr($destination, 0, 1) == "0") {
-		 		$dest[] = "+44".substr($destination, 1);
-		 	} else {
-		 		$dest[] = $destination;
-		 	}
-		 	$mail->addAddress($dest."@sms.textapp.net");
+		 	$mail->addAddress($destination."@sms.textapp.net");
 		 }
 		 
 		 $mail->Subject = $this->message;

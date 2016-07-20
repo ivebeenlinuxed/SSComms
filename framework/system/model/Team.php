@@ -40,14 +40,21 @@ class Team extends \Model\DBObject {
 	* 
 	* @var string $name 
 	*/
-	public $name;	
+	public $name;
+	
+	/**
+	* int(11)
+	* 
+	* @var int $radio_allocation 
+	*/
+	public $radio_allocation;	
 	/**
 	 * Lists all the columns in the database
 	 *
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","name");
+		return array("id","name","radio_allocation");
 	}
 	
 	/**

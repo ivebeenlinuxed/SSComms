@@ -6,6 +6,7 @@ class Plugin {
 		return array(
 				"\\Controller\\Widget\\LiveHelper\\Duty_Role",
 				"\\Controller\\Widget\\LiveHelper\\Asset_Change",
+				"\\Controller\\Widget\\LiveHelper\\Task"
 				
 		);
 	}

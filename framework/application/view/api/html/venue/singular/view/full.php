@@ -24,7 +24,7 @@
 		</ul>
 		<div class="tab-content">
 			<div role="tabpanel" class="tab-pane active" id="venue_programme">
-				<a href="#" class="pull-right btn btn-primary">Add Event</a>
+				<a href="/api/event/add?venue=<?php echo $venue->id ?>" data-type="api-modal" class="pull-right btn btn-primary">Add Event</a>
 				<table class="table table-striped table-bordered">
 					<thead>
 						<tr>
@@ -36,19 +36,32 @@
 						</tr>
 					</thead>
 					<tbody>
+						<?php 
+						foreach ($venue->getEvents() as $event) {
+						?>
 						<tr>
-							<td>10:00</td>
-							<td>12:00</td>
-							<td>Main Meeting</td>
-							<td>As Planned</td>
+							<td><?php echo date("d/m H:i", (int)$event->start) ?></td>
+							<td><?php echo date("H:i", (int)$event->end) ?></td>
+							<td><?php echo $event->description ?></td>
+							<td><?php echo $event->getStatus() ?></td>
 							<td>
+								<?php 
+								if ($event->status == \Model\Event::STATUS_ASPLANNED || $event->status == \Model\Event::STATUS_AMENDMENT) {
+								?>
 								<div class="btn-group">
-									<a href="#" class="btn btn-danger">Cancel</a>
-									<a href="#" class="btn btn-primary">Move</a>
-									<a href="#" class="btn btn-default">Delete</a>
+									<a href="/api/event/cancel?event=<?php echo $event->id ?>" data-type="api-modal" class="btn btn-danger">Cancel</a>
+									<a href="/api/event/move?event=<?php echo $event->id ?>" data-type="api-modal" class="btn btn-primary">Move</a>
+									<a href="/api/event/repeat?event=<?php echo $event->id ?>" data-type="api-modal" class="btn btn-success">Repeat</a>
+									<a href="/api/event/delete?event=<?php echo $event->id ?>" data-type="api-modal" class="btn btn-default">Delete</a>
 								</div>
+								<?php 
+								}
+								?>
 							</td>
 						</tr>
+						<?php 
+						}
+						?>
 					</tbody>
 				</table>
 			</div>

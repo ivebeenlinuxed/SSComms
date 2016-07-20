@@ -7,7 +7,7 @@
 		</div>
 </template>
 <template id="result">
-	<div class="col-xs-3"><a href="#"
+	<div class="col-xs-3 assetlist-result"><a href="#"
 		class="thumbnail">
 		<div class="media">
 			<div class="media-left">

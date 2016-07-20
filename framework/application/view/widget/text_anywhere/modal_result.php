@@ -5,12 +5,7 @@
         <h4 class="modal-title">Send a Text</h4>
       </div>
       <div class="modal-body">
-        Your Result:
-        <div class="alert alert-info">
-        	<?php
-        	var_dump($result->SendSMSResult);
-        	?>
-        </div>
+        All Done!
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

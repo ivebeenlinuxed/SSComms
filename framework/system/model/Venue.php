@@ -82,6 +82,16 @@ class Venue extends \Model\DBObject {
 	}
 
 	/**
+	 * Gets all Events relating to this model by the field venue
+	 * 
+	 * @return array
+	 */	
+	public function getEvents() {
+		return \Model\Event::getByVenue($this);
+	}
+	
+
+	/**
 	 * Gets all VenueChecks relating to this model by the field venue
 	 * 
 	 * @return array

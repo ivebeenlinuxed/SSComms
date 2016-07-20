@@ -61,12 +61,12 @@ class AssetListbox {
 				this.suggestions.innerHTML = "";
 				for (var i=0; i < (json.data.length<4? json.data.length : 4); i++) {
 					var row = json.data[i];
-					var node = this.result_templ.cloneNode(true);
-					node.asset_data = row;
+					var node = this.result_templ.cloneNode(true).querySelector(".assetlist-result");
+					node.querySelector("a").asset_data = json.data[i];
 					node.querySelector("h4").innerHTML = row.name;
-					node.querySelector("a").dataset.asset = row.id;
-					node.querySelector("a").addEventListener("click", () => {
-						this.AddResult(row);
+					node.querySelector("a").dataset.asset = JSON.stringify(row);
+					node.querySelector("a").addEventListener("click", (e) => {
+						this.AddResult(JSON.parse(e.target.closest("a").dataset.asset));
 					});
 					this.suggestions.appendChild(node);
 				}

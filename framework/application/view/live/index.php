@@ -14,8 +14,8 @@
 				Duty</a>
 		</div>
 		<div class="btn-group" role="group" aria-label="...">
-			<a class="btn btn-default">Allocate Incident</a> <a
-				class="btn btn-default">Open Task</a>
+			<a data-type="api-modal" href="/widget/livehelper/task/open_task"
+				class="btn btn-default">Open Task/Incident</a>
 		</div>
 	</div>
 	<template id="tile-templ">

@@ -73,7 +73,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("body").delegate("#api-modal form", "submit", function(e) {
+	$("body").delegate("#api-modal form:not([data-ajaxless])", "submit", function(e) {
 		e.preventDefault();
 		
 		fields = new Object();

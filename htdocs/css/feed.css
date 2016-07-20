@@ -1,0 +1,134 @@
+@CHARSET "UTF-8";
+
+.feed {
+	overflow: hidden;
+}
+
+.feed .feed-input textarea, .feed .feed-input input {
+	margin-bottom: 5px;
+}
+
+.feed .feed-input {
+	margin-bottom: 10px;
+}
+
+.feed .media-body > .media {
+	margin-top: 10px;
+}
+
+.feed .profile-pic {
+	border-radius: 5px;
+}
+
+.feed .new-post {
+	animation: feed-slidein 0.3s linear forwards;
+	overflow: hidden;
+}
+
+.feed .new-comment {
+	animation: feed-slidein 0.5s linear forwards;
+	overflow: hidden;
+}
+
+.thread-comment-stream .collapse.in {
+		animation: feed-fadein .3s linear forwards;
+}
+
+.feed .del-media {
+	animation: feed-remove 1s cubic-bezier(0.55, -0.04, 0.91, 0.94) forwards;
+	overflow: hidden;
+}
+
+.feed .feed-lightbox {
+	margin-bottom: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	clear: both;
+}
+
+.feed .feed-lightbox img {
+	height: 100px;
+}
+
+
+.feed .comment-form {
+	display: none;	
+}
+
+.feed .comment-form.in {
+	display: flex;
+	animation: feed-slidein .2s linear forwards;
+	overflow: hidden;
+}
+
+.feed-post > .media-body > .post-message {
+	min-height: 50px;
+}
+
+.fa-star.new-star {
+	animation: feed-staradd .3s linear forwards;
+}
+/*
+.feed .highlight h4:before {
+	content: 'NEW';
+	border-radius: 5px;
+	display: inline-block;
+	background-color: #eee;
+	padding: 0 5px 0 5px;
+	color: black;
+	line-height: 1em;
+	font-size: 0.9em;
+}
+*/
+
+@keyframes feed-highlight {
+    0% {
+        background-color: rgba(255, 255, 255, 0);
+	}
+
+    100% {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes feed-staradd {
+    0% {
+        font-size: 1em;
+	}
+
+    50% {
+        font-size: 1.2em;
+    }
+    
+    100% {
+    	font-size: 1em;
+    }
+}
+
+@keyframes feed-fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes feed-slidein {
+    0% { max-height: 0; }
+    99%   { max-height: 200px; }
+    100% { max-height: none; }
+}
+
+@keyframes feed-remove {
+    0% {
+        opacity: 1;
+        transform: rotateZ(0);
+}
+
+    50% {
+        opacity: 0;
+        transform: translateY(600px) rotateZ(90deg);
+    }
+    
+    100% {
+    	height: 0;
+    	margin: 0;
+    }
+}

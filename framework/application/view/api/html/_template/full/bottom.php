@@ -23,6 +23,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
 <script src="/js/widget/home_asset.js"></script>
 <script src="/js/widget/home_person.js"></script>
 <script src="/js/offline/venue_check_online.js"></script>
+<script src="/js/widget/feed.js"></script>
 
 
 

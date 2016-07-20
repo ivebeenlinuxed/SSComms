@@ -225,6 +225,56 @@ class Person extends \Model\DBObject {
 	
 
 	/**
+	 * Gets all Tasks relating to this model by the field opened_actor
+	 * 
+	 * @return array
+	 */	
+	public function getTasksFromOpenedActor() {
+		return \Model\Task::getByOpenedActor($this);
+	}
+	
+
+	/**
+	 * Gets all Tasks relating to this model by the field closed_actor
+	 * 
+	 * @return array
+	 */	
+	public function getTasksFromClosedActor() {
+		return \Model\Task::getByClosedActor($this);
+	}
+	
+
+	/**
+	 * Gets all TaskComments relating to this model by the field actor
+	 * 
+	 * @return array
+	 */	
+	public function getTaskCommentsFromActor() {
+		return \Model\TaskComment::getByActor($this);
+	}
+	
+
+	/**
+	 * Gets all TaskComments relating to this model by the field person
+	 * 
+	 * @return array
+	 */	
+	public function getTaskCommentsFromPerson() {
+		return \Model\TaskComment::getByPerson($this);
+	}
+	
+
+	/**
+	 * Gets all ThreadPostStars relating to this model by the field person
+	 * 
+	 * @return array
+	 */	
+	public function getThreadPostStars() {
+		return \Model\ThreadPostStar::getByPerson($this);
+	}
+	
+
+	/**
 	 * Gets all VenueChecks relating to this model by the field actor
 	 * 
 	 * @return array

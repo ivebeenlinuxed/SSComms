@@ -12,6 +12,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
 <link rel="stylesheet" type="text/css" href="/plugins/boiler/css/main.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/font-awesome-4.0.3/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" href="/plugins/toastr/toastr.css" />
+<link rel="stylesheet" type="text/css" href="/css/feed.css" />
 <meta name="viewport" content="width=device-width">
 
 <script type="text/javascript" src="/plugins/jquery/jquery-1.9.1.min.js"></script>

@@ -21,7 +21,7 @@
 						echo "Currently unassigned";
 					}
 					?></div>
-					<button class="btn btn-success pull-right assign-role-btn" data-role="<?= $role->id ?>">Assign</button>
+					<button class="btn btn-default pull-right assign-role-btn" data-role="<?= $role->id ?>">Retire</button>
 					<div class="clearfix"></div>
 				</div>
 				</div>

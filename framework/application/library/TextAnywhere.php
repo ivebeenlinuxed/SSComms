@@ -31,36 +31,21 @@ class TextAnywhere {
 		if (count($this->destinations) == 0) {
 			throw new \Exception("No destinations selected");
 		}
-		 $sc = new \SoapClient('http://www.textapp.net/webservice/service.asmx?wsdl');
-		 $params = new \stdClass();
-		 $params->returnCSVString = false;
-		 $params->externalLogin = 'mylogin';
-		 $params->password = 'mypassword';
-		 $params->clientBillingReference = $this->billing_ref;
-		 $params->clientMessageReference = $this->client_ref;
-		 $params->originator = $this->originator;
-		 $dest = array();
+		require BOILER_LOCATION.'/../vendor/autoload.php';
+		$mail = new \PHPMailer();
+		$mail->setFrom("soulsurvivorcomms@gmail.com");
+		
+		$dest = array();
 		 foreach ($this->destinations as $destination) {
 		 	if (substr($destination, 0, 1) == "0") {
 		 		$dest[] = "+44".substr($destination, 1);
 		 	} else {
 		 		$dest[] = $destination;
 		 	}
-		 	$params->destinations = implode(", ", $dest);
-		 }
-		 if (preg_match("/[@£$¥èéùìòÇ\fØø\nÅåΔ_ΦΓΛΩΠΨΣΘΞÆæßÉ !\"#¤%&'()*+,-.\/[0-9]:;<=>\?¡[A-Z]ÄÖÑÜ§¿[a-z]äöñüà\^\{\}\[~\]\|€]+/", $this->body)) {
-		 	$params->body = $this->message;
-		 	 $params->characterSetID = 1;
-		 } else {
-		 	$params->body = utf8_encode($this->message);
-		 	 $params->characterSetID = 2;
+		 	$mail->addAddress($dest."@sms.textapp.net");
 		 }
 		 
-		 $params->validity = 72;
-		 $params->replyMethodID = 1;
-		 $params->replyData = '';
-		 $params->statusNotificationUrl = '';
-		 $result = $sc->__call('SendSMS', array($params));
-		 return $result;
+		 $mail->Subject = $this->message;
+		 $mail->send();
 	}
 }

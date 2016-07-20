@@ -39,8 +39,9 @@ class TextAnywhere {
 		 foreach ($this->destinations as $destination) {
 		 	$mail->addAddress($destination."@sms.textapp.net");
 		 }
-		 
-		 $mail->Subject = $this->message;
+		 $mail->Subject = "";
+		 $mail->Body = $this->message;
 		 $mail->send();
+		 return $mail->send();
 	}
 }

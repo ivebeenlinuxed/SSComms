@@ -92,13 +92,13 @@ class Person extends \System\Model\Person {
 		$num = str_replace("(", "", $num);
 		$num = str_replace(")", "", $num);
 		$num = str_replace(" ", "", $num);
-		if (substr($num, 0, 1) == "0") {
-			return "+44".substr($num, 1);
-		} elseif (substr($num, 0, 1) == "+") {
+		//if (substr($num, 0, 1) == "0") {
+		//	return "+44".substr($num, 1);
+		//} elseif (substr($num, 0, 1) == "+") {
 			return $num;
-		} else {
-			return null;
-		}
+		//} else {
+		//	return null;
+		//}
 		
 	}
 	

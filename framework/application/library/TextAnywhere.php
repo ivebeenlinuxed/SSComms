@@ -33,9 +33,23 @@ class TextAnywhere {
 		}
 		
 		$dest = array();
-		 foreach ($this->destinations as $destination) {
-		 	mail($destination."@sms.textapp.net", " ", wordwrap($this->message, 70), "From: soulsurvivorcomms@gmail.com");
+		include BOILER_LOCATION."../vendor/autoload.php";
+		$mailer = new \PHPMailer();
+		$mailer->isSMTP();
+		$mailer->SMTPAuth   = true;                  // enable SMTP authentication
+		$mailer->SMTPSecure = "tls";                 // sets the prefix to the servier
+		$mailer->Host       = "smtp.gmail.com";      // sets GMAIL as the SMTP server
+		$mailer->Port       = 587;                   // set the SMTP port for the GMAIL server
+		$mailer->Username   = \Core\Router::$settings['email']['username'];  // GMAIL username
+		$mailer->Password   = \Core\Router::$settings['email']['password'];            // GMAIL password
+		$mailer->SetFrom(\Core\Router::$settings['email']['username']);
+		$mailer->Subject = "";
+		$mailer->Body = $this->message;
+		
+		foreach ($this->destinations as $destination) {
+		 	$mailer->addAddress($destination."@sms.textapp.net");
 		 }
+		 $mailer->send();
 		 return true;
 	}
 }

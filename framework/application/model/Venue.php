@@ -27,4 +27,23 @@ namespace Model;
  *
  */
 class Venue extends \System\Model\Venue {
+	public function getEventsByDay(\DateTime $day) {
+		$start = clone $day;
+		$start->setTime(0, 0, 0);
+		$end = clone $start;
+		$end->add(new \DateInterval("P1D"));
+		
+		$ev_sel = \Model\Event::getDB()->Select(\Model\Event::class);
+		$ev_and = $ev_sel->getAndFilter();
+		$ev_and->gt ( "end", $start->getTimestamp () );
+		$ev_and->lt ( "start", $end->getTimestamp () );
+		$ev_and->eq("venue", $this->id);
+		$ev_sel->setFilter($ev_and);
+		$ev_sel->addField("id");
+		$out = array();
+		foreach ($ev_sel->Exec() as $ev_row) {
+			$out[] = new \Model\Event($ev_row['id']);
+		}
+		return $out;
+	}
 }

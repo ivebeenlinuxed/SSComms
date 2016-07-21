@@ -16,7 +16,11 @@
 					<div><?php
 					$assignee = $role->getCurrentlyAssigned();
 					if ($assignee != null) {
-						echo "Currently assigned to {$assignee->getPerson()->getName()}";
+						$person = $assignee->getPerson();
+						echo "Currently assigned to {$person->getName()}";
+						if ($person->phone_number) {
+							echo " ({$person->phone_number})";
+						}
 					} else {
 						echo "Currently unassigned";
 					}

@@ -6,6 +6,32 @@
 	<div class="list-group asset-listbox-results">
 		</div>
 </template>
+
+<template id="newform">
+<div class="col-xs-12">
+<div class="form-group">
+	<label>Asset Name</label>
+	<input class="form-control" type="text" name="name" />
+</div>
+<div class="form-group">
+	<label>Asset Group</label>
+	<select class="form-control" name="equipment_category">
+	<?php 
+	foreach(\Model\EquipmentCategory::getAll() as $cat) {
+	?>
+	<option value="<?php echo $cat->id ?>"><?php echo $cat->getName() ?></option>
+	<?php 
+	}
+	?>
+	</select>
+</div>
+<div class="form-group">
+	<label>Barcode</label>
+	<input class="form-control" type="text" name="barcode" />
+</div>
+<button class="btn btn-success pull-right">Add Asset</button>
+</div>
+</template>
 <template id="result">
 	<div class="col-xs-3 assetlist-result"><a href="#"
 		class="thumbnail">

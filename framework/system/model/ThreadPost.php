@@ -50,13 +50,6 @@ class ThreadPost extends \Model\DBObject {
 	public $person;
 	
 	/**
-	* varchar(255)
-	* 
-	* @var string $email 
-	*/
-	public $email;
-	
-	/**
 	* int(11)
 	* 
 	* @var int $reply 
@@ -89,7 +82,7 @@ class ThreadPost extends \Model\DBObject {
 	 * @return array
 	 */
 	public static function getDBColumns() {
-		return array("id","thread","person","email","reply","message","title","date");
+		return array("id","thread","person","reply","message","title","date");
 	}
 	
 	/**
@@ -121,6 +114,11 @@ class ThreadPost extends \Model\DBObject {
 		$keys = array();
 
 		$std = new \stdClass();
+		$std->table = "person";
+		$std->field = "id";
+		
+		$keys['person'] = $std;	
+		$std = new \stdClass();
 		$std->table = "thread_post";
 		$std->field = "id";
 		
@@ -131,6 +129,27 @@ class ThreadPost extends \Model\DBObject {
 		
 		$keys['thread'] = $std;	
 		return $keys;
+	}
+		
+	/**
+	 * Gets all Person associated with this object
+	 * 
+	 * @return System\Model$className
+	 */
+	public function getPerson() {
+		return \Model\Person::Fetch($this->person);
+	}			
+		
+	/**
+	 * Gets all objects relating to Person
+	 * 
+	 * @param $class \Model$className Get objects relating to this class
+	 * 
+	 * @return array
+	 */		
+	public static function getByPerson(Person $class) {
+		$c = get_called_class();
+		return $c::getByAttribute("person", $class->id);
 	}
 		
 	/**
@@ -212,6 +231,11 @@ class ThreadPost extends \Model\DBObject {
 		}
 		\Library\RTCQueue::Send("/model/".self::getTable()."/{$this->id}", $update_result);
 		return;
+		$obj = $this->getPerson();
+		if ($obj) {
+			$obj->bubbleUpdateResult($update_result, $loop_control);
+		}
+
 		$obj = $this->getReply();
 		if ($obj) {
 			$obj->bubbleUpdateResult($update_result, $loop_control);

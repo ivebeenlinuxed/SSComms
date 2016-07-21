@@ -1,4 +1,9 @@
-<div class="feed" data-thread="<?php echo $thread->id ?>">
+<?php 
+if (!$ajax_update) {
+	$widgetid = rand(100000, 999999);
+?>
+<div class="feed" data-thread="<?php echo $thread->id ?>" id="feed-widget-<?php echo $widgetid ?>">
+
 						<?php
 						if ($controller->edit_mode) {
 						?>
@@ -23,10 +28,14 @@
 							</div>
 							 -->
 						</div>
+						<div class="clearfix"></div>
 						<?php
 						}
 						?>
 <div class="feed-posts">
+<?php 
+}
+?>
 							<?php
 							/**
 							 * @var \Model\Thread $thread
@@ -40,5 +49,15 @@
 								echo "No Posts";
 							}
 							?>
+						<?php 
+if (!$ajax_update) {
+?>
 						</div>
+
 					</div>
+					<script type="text/javascript">
+var feeder_<?php echo $widgetid ?> = new FeedWidget(document.querySelector('#feed-widget-<?php echo $widgetid ?>'));
+					</script>
+<?php 
+}
+?>

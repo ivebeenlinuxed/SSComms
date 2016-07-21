@@ -47,7 +47,17 @@ class Feed {
 		
 		\Core\Router::loadView("widget/feed/stream", array(
 				"controller"=>$this,
-				"thread"=>$thread
+				"thread"=>$thread,
+				"ajax_update"=>isset($_GET['update'])
+		));
+	}
+	
+	public function post() {
+		\Model\ThreadPost::Create(array(
+				"thread"=>$_POST['thread'],
+				"message"=>$_POST['message'],
+				"person"=>\Core\Router::getCurrentPerson()->id,
+				"date"=>time()
 		));
 	}
 	
@@ -96,8 +106,8 @@ class Feed {
 		if (!is_object($post)) {
 			$post = new \Model\ThreadPost($post);
 		}
-		$user = $post->getUser();
-		$current_user = \Core\Router::getCurrentUser();
+		$user = $post->getPerson();
+		$current_user = \Core\Router::getCurrentPerson();
 		
 		\Core\Router::loadView("widget/feed/post", array(
 				"controller"=>$this,

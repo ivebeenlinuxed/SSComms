@@ -27,4 +27,12 @@ namespace Model;
  *
  */
 class Task extends \System\Model\Task {
+	public function __construct($Id) {
+		parent::__construct($Id);
+		
+		if (!$this->thread) {
+			$thread = \Model\Thread::Create(array("name"=>"task[{$this->id}].thread"));
+			$this->setAttribute("thread", $thread->id);
+		}
+	}
 }

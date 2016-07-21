@@ -265,6 +265,16 @@ class Person extends \Model\DBObject {
 	
 
 	/**
+	 * Gets all ThreadPosts relating to this model by the field person
+	 * 
+	 * @return array
+	 */	
+	public function getThreadPosts() {
+		return \Model\ThreadPost::getByPerson($this);
+	}
+	
+
+	/**
 	 * Gets all ThreadPostStars relating to this model by the field person
 	 * 
 	 * @return array

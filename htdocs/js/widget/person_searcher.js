@@ -56,9 +56,9 @@ class PersonSearcher {
 					var node = el.cloneNode(true);
 					node.person_data = row;
 					node.querySelector("h4").innerHTML = row.first_name+" "+row.last_name;
-					node.querySelector("a").dataset.user = row.id;
-					node.querySelector("a").addEventListener("click", () => {
-						this.onselect(row);
+					node.querySelector("a").dataset.user = JSON.stringify(row);
+					node.querySelector("a").addEventListener("click", (e) => {
+						this.onselect(JSON.parse(e.target.closest("a").dataset.user));
 					});
 					this.container.appendChild(node);
 				}

@@ -39,7 +39,6 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
 		<div class="collapse navbar-collapse"
 			id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a href="/live">Live View</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Team <span class="caret"></span></a>
 					<ul class="dropdown-menu">
@@ -80,6 +79,7 @@ if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'
 						<li><a href="/safety/manager">Edit Safety Check Form</a></li>
 						<li><a href="/admin/config">System Configuration</a></li>
 						<li><a href="/admin/tag">Tags</a></li>
+						<li><a href="/home">Old Home</a></li>
 					</ul>
 				</li>
 			</ul>

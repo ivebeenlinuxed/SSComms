@@ -10,6 +10,8 @@ use Model\User;
 
 class Router extends \System\Core\Router {
 	
+	protected static $defaultController = "Live";
+	
 	protected static $listeners;
 	
 	public static function getController($array) {
